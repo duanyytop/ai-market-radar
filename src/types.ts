@@ -5,9 +5,7 @@ export type ChainName = z.infer<typeof ChainName>;
 
 export const WalletSchema = z.object({
   label: z.string().optional(),
-  address: z
-    .string()
-    .regex(/^0x[a-fA-F0-9]{40}$/, 'Invalid Ethereum address'),
+  address: z.string().regex(/^0x[a-fA-F0-9]{40}$/, 'Invalid Ethereum address'),
   chains: z.array(ChainName).default(['ethereum', 'arbitrum', 'base']),
 });
 export type Wallet = z.infer<typeof WalletSchema>;
@@ -80,4 +78,33 @@ export interface Alert {
   message: string;
   value: number;
   threshold: number;
+}
+
+export interface ExchangeAddress {
+  address: `0x${string}`;
+  label: string;
+  type: 'cex' | 'dex';
+  exchange: string;
+}
+
+export interface ExchangeFlow {
+  exchange: string;
+  type: 'cex' | 'dex';
+  token: string;
+  inflow: string;
+  outflow: string;
+  netFlow: string;
+  inflowUsd?: number;
+  outflowUsd?: number;
+}
+
+export interface ExchangeFlowResult {
+  chain: ChainName;
+  blockRange: { from: bigint; to: bigint };
+  flows: ExchangeFlow[];
+  summary: {
+    totalInflowUsd: number;
+    totalOutflowUsd: number;
+    netFlowUsd: number;
+  };
 }
