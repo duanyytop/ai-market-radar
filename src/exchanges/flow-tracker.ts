@@ -9,7 +9,9 @@ const TRANSFER_EVENT = parseAbiItem(
 );
 
 const MAX_BLOCKS = 5000;
-const DEFAULT_BLOCKS = 1000;
+const DEFAULT_BLOCKS = 100;
+// Alchemy free tier allows max 10 blocks per getLogs request
+const CHUNK_SIZE = 10;
 
 // Minimal ABI for decimals and symbol
 const ERC20_METADATA_ABI = [
@@ -65,6 +67,32 @@ async function getTokenMeta(
   return meta;
 }
 
+/**
+ * Fetch logs in chunks to work within RPC provider block range limits.
+ * Alchemy free tier limits eth_getLogs to 10 blocks per request.
+ */
+async function getLogsChunked(
+  client: PublicClient,
+  tokenAddress: `0x${string}`,
+  fromBlock: bigint,
+  toBlock: bigint,
+) {
+  const allLogs: Awaited<ReturnType<typeof client.getLogs<typeof TRANSFER_EVENT>>> = [];
+
+  for (let start = fromBlock; start <= toBlock; start += BigInt(CHUNK_SIZE)) {
+    const end = start + BigInt(CHUNK_SIZE) - 1n > toBlock ? toBlock : start + BigInt(CHUNK_SIZE) - 1n;
+    const logs = await client.getLogs({
+      event: TRANSFER_EVENT,
+      address: tokenAddress,
+      fromBlock: start,
+      toBlock: end,
+    });
+    allLogs.push(...logs);
+  }
+
+  return allLogs;
+}
+
 export interface ExchangeFlowOptions {
   token?: `0x${string}`;
   exchange?: string;
@@ -111,16 +139,12 @@ export async function getExchangeFlows(
   >();
 
   for (const tokenAddress of tokenAddresses) {
+    const sym = knownSymbolMap.get(tokenAddress.toLowerCase()) ?? tokenAddress;
     let logs;
     try {
-      logs = await client.getLogs({
-        event: TRANSFER_EVENT,
-        address: tokenAddress,
-        fromBlock,
-        toBlock: latestBlock,
-      });
+      logs = await getLogsChunked(client, tokenAddress, fromBlock, latestBlock);
+      console.error(`[${chain}] ${sym}: ${logs.length} transfer logs in ${blocks} blocks`);
     } catch (err) {
-      const sym = knownSymbolMap.get(tokenAddress.toLowerCase()) ?? tokenAddress;
       console.error(`[${chain}] getLogs failed for ${sym}: ${err instanceof Error ? err.message : String(err)}`);
       continue;
     }
@@ -200,7 +224,6 @@ export async function getExchangeFlows(
     const inflow = formatUnits(entry.inflow, entry.decimals);
     const outflow = formatUnits(entry.outflow, entry.decimals);
     const net = entry.inflow - entry.outflow;
-    const netFlow = (net < 0n ? '-' : '') + formatUnits(net < 0n ? -net : net, entry.decimals);
 
     flows.push({
       exchange: entry.exchange,
