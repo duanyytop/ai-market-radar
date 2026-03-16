@@ -19,23 +19,21 @@ export function loadConfig(): DefiRadarConfig {
         `  cat > ${CONFIG_FILE} << 'EOF'\n` +
         JSON.stringify(
           {
-            wallets: [
-              {
-                label: 'My Wallet',
-                address: '0xYOUR_WALLET_ADDRESS',
-                chains: ['ethereum', 'arbitrum', 'base'],
-              },
-            ],
             chains: {
               ethereum: { rpcUrl: 'https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY' },
               arbitrum: { rpcUrl: 'https://arb-mainnet.g.alchemy.com/v2/YOUR_KEY' },
               base: { rpcUrl: 'https://base-mainnet.g.alchemy.com/v2/YOUR_KEY' },
             },
+            monitoring: {
+              tokens: ['USDC', 'USDT', 'WETH', 'WBTC', 'DAI'],
+              chains: ['ethereum', 'arbitrum', 'base'],
+              whaleThresholdUsd: 100000,
+            },
           },
           null,
           2,
         ) +
-        "\nEOF",
+        '\nEOF',
     );
   }
 

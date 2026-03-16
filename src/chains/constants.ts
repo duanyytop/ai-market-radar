@@ -43,24 +43,3 @@ export const KNOWN_TOKENS: Record<ChainName, Record<string, `0x${string}`>> = {
     DAI: '0x50c5725949A6F0c72E6C4a641F24049A917DB0Cb',
   },
 };
-
-// Aave V3 Pool contract addresses
-export const AAVE_V3_POOL: Record<ChainName, `0x${string}`> = {
-  ethereum: '0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2',
-  arbitrum: '0x794a61358D6845594F94dc1DB02A252b5b4814aD',
-  base: '0xA238Dd80C259a72e81d7e4664a9801593F98d1c5',
-};
-
-// Uniswap V3 NonfungiblePositionManager addresses
-export const UNISWAP_V3_POSITION_MANAGER: Record<ChainName, `0x${string}`> = {
-  ethereum: '0xC36442b4a4522E871399CD717aBDD847Ab11FE88',
-  arbitrum: '0xC36442b4a4522E871399CD717aBDD847Ab11FE88',
-  base: '0x03a520b32C04BF3bEEf7BEb72E919cf822Ed34f1',
-};
-
-// Uniswap V3 Factory addresses (for computing pool addresses)
-export const UNISWAP_V3_FACTORY: Record<ChainName, `0x${string}`> = {
-  ethereum: '0x1F98431c8aD98523631AE4a59f267346ea31F984',
-  arbitrum: '0x1F98431c8aD98523631AE4a59f267346ea31F984',
-  base: '0x33128a8fC17869897dcE68Ed026d694621f6FDfD',
-};

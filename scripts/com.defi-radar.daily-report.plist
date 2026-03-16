@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.defi-radar.daily-report</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <!-- Update this path to your node binary: run `which node` to find it -->
+        <string>/usr/local/bin/node</string>
+        <!-- Update this path to your defi-radar installation -->
+        <string>/Users/dylan/dev/side/defi-radar/dist/cli.js</string>
+        <string>report</string>
+        <string>--both</string>
+    </array>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>8</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/defi-radar-report.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/defi-radar-report.err</string>
+
+    <key>RunAtLoad</key>
+    <false/>
+</dict>
+</plist>
