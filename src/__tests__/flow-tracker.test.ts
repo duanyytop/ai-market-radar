@@ -25,9 +25,17 @@ function makeTransferLog(
 }
 
 function createMockClient(logs: ReturnType<typeof makeTransferLog>[] = []): PublicClient {
+  let returned = false;
   return {
     getBlockNumber: vi.fn().mockResolvedValue(20000n),
-    getLogs: vi.fn().mockResolvedValue(logs),
+    // Return logs only on the first chunk call to avoid duplication
+    getLogs: vi.fn().mockImplementation(() => {
+      if (!returned) {
+        returned = true;
+        return Promise.resolve(logs);
+      }
+      return Promise.resolve([]);
+    }),
     readContract: vi.fn().mockImplementation(({ functionName }: { functionName: string }) => {
       if (functionName === 'decimals') return Promise.resolve(6);
       if (functionName === 'symbol') return Promise.resolve('USDC');
@@ -99,10 +107,10 @@ describe('Flow Tracker', () => {
     expect(result.blockRange.to).toBe(20000n);
   });
 
-  it('uses default 1000 blocks when not specified', async () => {
+  it('uses default 100 blocks when not specified', async () => {
     const client = createMockClient([]);
     const result = await getExchangeFlows(client, 'ethereum', { token: USDC_ADDR });
-    expect(result.blockRange.from).toBe(19000n);
+    expect(result.blockRange.from).toBe(19900n);
     expect(result.blockRange.to).toBe(20000n);
   });
 

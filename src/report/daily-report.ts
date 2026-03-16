@@ -3,7 +3,7 @@ import { getClient, KNOWN_TOKENS } from '../chains/index.js';
 import { getExchangeFlows } from '../exchanges/index.js';
 import { getTokenPrices } from '../pricing/coingecko.js';
 import { getExchangeLookup } from '../exchanges/constants.js';
-import { formatUnits, parseAbiItem } from 'viem';
+import { formatUnits, parseAbiItem, type PublicClient } from 'viem';
 import { type Locale, t } from './i18n.js';
 
 const STABLECOINS = ['USDC', 'USDT', 'DAI', 'USDC.e', 'USDbC'];
@@ -13,6 +13,27 @@ const TRANSFER_EVENT = parseAbiItem(
 const ERC20_DECIMALS_ABI = [
   { name: 'decimals', type: 'function', stateMutability: 'view', inputs: [], outputs: [{ name: '', type: 'uint8' }] },
 ] as const;
+const LOG_CHUNK_SIZE = 10n;
+
+async function getLogsChunked(
+  client: PublicClient,
+  tokenAddress: `0x${string}`,
+  fromBlock: bigint,
+  toBlock: bigint,
+) {
+  const allLogs: Awaited<ReturnType<typeof client.getLogs<typeof TRANSFER_EVENT>>> = [];
+  for (let start = fromBlock; start <= toBlock; start += LOG_CHUNK_SIZE) {
+    const end = start + LOG_CHUNK_SIZE - 1n > toBlock ? toBlock : start + LOG_CHUNK_SIZE - 1n;
+    const logs = await client.getLogs({
+      event: TRANSFER_EVENT,
+      address: tokenAddress,
+      fromBlock: start,
+      toBlock: end,
+    });
+    allLogs.push(...logs);
+  }
+  return allLogs;
+}
 
 export async function generateDailyReport(
   config: DefiRadarConfig,
@@ -152,7 +173,7 @@ async function collectWhaleMovements(
 
       try {
         const latestBlock = await client.getBlockNumber();
-        const fromBlock = latestBlock - 200n;
+        const fromBlock = latestBlock - 100n;
 
         let decimals: number;
         try {
@@ -167,12 +188,8 @@ async function collectWhaleMovements(
         }
 
         const minTokenAmount = thresholdUsd / price;
-        const logs = await client.getLogs({
-          event: TRANSFER_EVENT,
-          address: tokenAddress as `0x${string}`,
-          fromBlock,
-          toBlock: latestBlock,
-        });
+        const logs = await getLogsChunked(client, tokenAddress as `0x${string}`, fromBlock, latestBlock);
+        console.error(`[${chainName}] whale scan ${symbol}: ${logs.length} logs in 100 blocks`);
 
         for (const log of logs) {
           const from = log.args.from;

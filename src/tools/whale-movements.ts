@@ -8,6 +8,27 @@ import { getTokenPrices } from '../pricing/coingecko.js';
 const TRANSFER_EVENT = parseAbiItem(
   'event Transfer(address indexed from, address indexed to, uint256 value)',
 );
+const LOG_CHUNK_SIZE = 10n;
+
+async function getLogsChunked(
+  client: PublicClient,
+  tokenAddress: `0x${string}`,
+  fromBlock: bigint,
+  toBlock: bigint,
+) {
+  const allLogs: Awaited<ReturnType<typeof client.getLogs<typeof TRANSFER_EVENT>>> = [];
+  for (let start = fromBlock; start <= toBlock; start += LOG_CHUNK_SIZE) {
+    const end = start + LOG_CHUNK_SIZE - 1n > toBlock ? toBlock : start + LOG_CHUNK_SIZE - 1n;
+    const logs = await client.getLogs({
+      event: TRANSFER_EVENT,
+      address: tokenAddress,
+      fromBlock: start,
+      toBlock: end,
+    });
+    allLogs.push(...logs);
+  }
+  return allLogs;
+}
 
 const ERC20_METADATA_ABI = [
   {
@@ -19,8 +40,8 @@ const ERC20_METADATA_ABI = [
   },
 ] as const;
 
-const MAX_BLOCKS = 2000;
-const DEFAULT_BLOCKS = 500;
+const MAX_BLOCKS = 500;
+const DEFAULT_BLOCKS = 100;
 
 export async function getWhaleMovementsTool(
   config: DefiRadarConfig,
@@ -114,12 +135,7 @@ async function scanWhaleTransfers(
 
   let logs;
   try {
-    logs = await client.getLogs({
-      event: TRANSFER_EVENT,
-      address: tokenAddress,
-      fromBlock,
-      toBlock: latestBlock,
-    });
+    logs = await getLogsChunked(client, tokenAddress, fromBlock, latestBlock);
   } catch {
     return [];
   }
