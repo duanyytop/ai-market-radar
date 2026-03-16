@@ -119,8 +119,9 @@ export async function getExchangeFlows(
         fromBlock,
         toBlock: latestBlock,
       });
-    } catch {
-      // Skip token if getLogs fails (e.g. RPC rate limit)
+    } catch (err) {
+      const sym = knownSymbolMap.get(tokenAddress.toLowerCase()) ?? tokenAddress;
+      console.error(`[${chain}] getLogs failed for ${sym}: ${err instanceof Error ? err.message : String(err)}`);
       continue;
     }
 
@@ -153,8 +154,9 @@ export async function getExchangeFlows(
             tokenAddress,
             knownSymbolMap.get(tokenAddress.toLowerCase()),
           );
-        } catch {
-          break; // Can't read token metadata, skip this token
+        } catch (err) {
+          console.error(`[${chain}] getTokenMeta failed for ${tokenAddress}: ${err instanceof Error ? err.message : String(err)}`);
+          break;
         }
       }
 

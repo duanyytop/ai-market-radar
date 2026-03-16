@@ -12,6 +12,7 @@ permissions:
 jobs:
   generate-report:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     env:
       # All optional — falls back to public RPCs if not set
       ETH_RPC_URL: ${{ secrets.ETH_RPC_URL }}
@@ -36,10 +37,22 @@ jobs:
         run: pnpm build
 
       - name: Generate English report
-        run: node dist/cli.js report --locale en --stdout > report-en.md 2>&1 || true
+        run: node dist/cli.js report --locale en --stdout > report-en.md 2> logs-en.txt || true
 
       - name: Generate Chinese report
-        run: node dist/cli.js report --locale zh --stdout > report-zh.md 2>&1 || true
+        run: node dist/cli.js report --locale zh --stdout > report-zh.md 2> logs-zh.txt || true
+
+      - name: Show debug logs
+        if: always()
+        run: |
+          echo "=== English report logs ==="
+          cat logs-en.txt || true
+          echo ""
+          echo "=== Chinese report logs ==="
+          cat logs-zh.txt || true
+          echo ""
+          echo "=== English report preview (first 20 lines) ==="
+          head -20 report-en.md || true
 
       - name: Create GitHub issue
         env:

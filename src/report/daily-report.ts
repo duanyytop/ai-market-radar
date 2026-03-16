@@ -45,29 +45,32 @@ async function collectExchangeFlows(
   for (const chainName of chains) {
     try {
       const client = getClient(chainName, config);
-      const result = await getExchangeFlows(client, chainName, { blocks: 1000 });
+      const result = await getExchangeFlows(client, chainName, { blocks: 500 });
+      console.error(`[${chainName}] exchange flows: ${result.flows.length} flows found`);
 
       // Enrich with prices
       const symbols = new Set(result.flows.map((f) => f.token));
-      try {
-        const prices = await getTokenPrices(Array.from(symbols), config.coingecko?.apiKey);
-        let totalIn = 0;
-        let totalOut = 0;
-        for (const f of result.flows) {
-          const price = prices[f.token.toUpperCase()] ?? 0;
-          f.inflowUsd = parseFloat(f.inflow) * price;
-          f.outflowUsd = parseFloat(f.outflow) * price;
-          totalIn += f.inflowUsd;
-          totalOut += f.outflowUsd;
+      if (symbols.size > 0) {
+        try {
+          const prices = await getTokenPrices(Array.from(symbols), config.coingecko?.apiKey);
+          let totalIn = 0;
+          let totalOut = 0;
+          for (const f of result.flows) {
+            const price = prices[f.token.toUpperCase()] ?? 0;
+            f.inflowUsd = parseFloat(f.inflow) * price;
+            f.outflowUsd = parseFloat(f.outflow) * price;
+            totalIn += f.inflowUsd;
+            totalOut += f.outflowUsd;
+          }
+          result.summary = { totalInflowUsd: totalIn, totalOutflowUsd: totalOut, netFlowUsd: totalIn - totalOut };
+        } catch (err) {
+          console.error(`[${chainName}] price fetch failed: ${err instanceof Error ? err.message : String(err)}`);
         }
-        result.summary = { totalInflowUsd: totalIn, totalOutflowUsd: totalOut, netFlowUsd: totalIn - totalOut };
-      } catch {
-        // continue without prices
       }
 
       results.push(result);
-    } catch {
-      // skip chain
+    } catch (err) {
+      console.error(`[${chainName}] collectExchangeFlows failed: ${err instanceof Error ? err.message : String(err)}`);
     }
   }
   return results;
@@ -87,7 +90,7 @@ async function collectStablecoinFlows(
         const client = getClient(chainName, config);
         const flowResult = await getExchangeFlows(client, chainName, {
           token: address as `0x${string}`,
-          blocks: 1000,
+          blocks: 500,
         });
 
         let totalInflow = 0;
@@ -109,8 +112,8 @@ async function collectStablecoinFlows(
           exchangeNetFlowUsd: netFlow,
           signal,
         });
-      } catch {
-        // skip
+      } catch (err) {
+        console.error(`[${chainName}] stablecoin ${symbol} failed: ${err instanceof Error ? err.message : String(err)}`);
       }
     }
   }
@@ -126,7 +129,9 @@ async function collectWhaleMovements(
   let prices: Record<string, number> = {};
   try {
     prices = await getTokenPrices(monitoredTokens, config.coingecko?.apiKey);
-  } catch {
+    console.error(`[whale] prices fetched: ${JSON.stringify(prices)}`);
+  } catch (err) {
+    console.error(`[whale] price fetch failed: ${err instanceof Error ? err.message : String(err)}`);
     return [];
   }
 
@@ -147,7 +152,7 @@ async function collectWhaleMovements(
 
       try {
         const latestBlock = await client.getBlockNumber();
-        const fromBlock = latestBlock - 500n;
+        const fromBlock = latestBlock - 200n;
 
         let decimals: number;
         try {
@@ -156,7 +161,8 @@ async function collectWhaleMovements(
             abi: ERC20_DECIMALS_ABI,
             functionName: 'decimals',
           });
-        } catch {
+        } catch (err) {
+          console.error(`[${chainName}] whale decimals failed for ${symbol}: ${err instanceof Error ? err.message : String(err)}`);
           continue;
         }
 
@@ -202,8 +208,8 @@ async function collectWhaleMovements(
             direction,
           });
         }
-      } catch {
-        // skip
+      } catch (err) {
+        console.error(`[${chainName}] whale scan failed for ${symbol}: ${err instanceof Error ? err.message : String(err)}`);
       }
     }
   }
