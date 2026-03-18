@@ -18,16 +18,17 @@ describe('ConfigSchema', () => {
     expect(result.coingecko).toBeUndefined();
   });
 
-  it('accepts anthropic config', () => {
+  it('accepts llm config', () => {
     const result = ConfigSchema.safeParse({
-      anthropic: { apiKey: 'sk-ant-test' },
+      llm: { provider: 'openai', apiKey: 'test', baseURL: 'https://api.kimi.com/v1' },
     });
     expect(result.success).toBe(true);
   });
 
-  it('applies default model for anthropic', () => {
-    const result = ConfigSchema.parse({ anthropic: {} });
-    expect(result.anthropic?.model).toBe('claude-sonnet-4-5-20250514');
+  it('applies default provider and model for llm', () => {
+    const result = ConfigSchema.parse({ llm: {} });
+    expect(result.llm?.provider).toBe('anthropic');
+    expect(result.llm?.model).toBe('claude-sonnet-4-5-20250514');
   });
 });
 
@@ -52,9 +53,25 @@ describe('loadConfig from env', () => {
     expect(config).toBeDefined();
   });
 
-  it('picks up ANTHROPIC_API_KEY from env', () => {
+  it('picks up LLM config from env', () => {
+    process.env = {
+      ...originalEnv,
+      LLM_API_KEY: 'sk-test',
+      LLM_PROVIDER: 'openai',
+      LLM_MODEL: 'kimi-2.5',
+      LLM_BASE_URL: 'https://api.kimi.com/v1',
+    };
+    const config = loadConfig();
+    expect(config.llm?.apiKey).toBe('sk-test');
+    expect(config.llm?.provider).toBe('openai');
+    expect(config.llm?.model).toBe('kimi-2.5');
+    expect(config.llm?.baseURL).toBe('https://api.kimi.com/v1');
+  });
+
+  it('falls back to ANTHROPIC_API_KEY env var', () => {
     process.env = { ...originalEnv, ANTHROPIC_API_KEY: 'sk-ant-test' };
     const config = loadConfig();
-    expect(config.anthropic?.apiKey).toBe('sk-ant-test');
+    expect(config.llm?.apiKey).toBe('sk-ant-test');
+    expect(config.llm?.provider).toBe('anthropic');
   });
 });

@@ -6,10 +6,12 @@ export const ConfigSchema = z.object({
       apiKey: z.string().optional(),
     })
     .optional(),
-  anthropic: z
+  llm: z
     .object({
+      provider: z.enum(['anthropic', 'openai']).default('anthropic'),
       apiKey: z.string().optional(),
       model: z.string().default('claude-sonnet-4-5-20250514'),
+      baseURL: z.string().optional(),
     })
     .optional(),
 });

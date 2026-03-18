@@ -17,8 +17,15 @@ export function loadConfig(): DefiRadarConfig {
   if (process.env.COINGECKO_API_KEY) {
     envOverrides.coingecko = { apiKey: process.env.COINGECKO_API_KEY };
   }
-  if (process.env.ANTHROPIC_API_KEY) {
-    envOverrides.anthropic = { apiKey: process.env.ANTHROPIC_API_KEY };
+  // LLM config from env vars
+  const llmApiKey = process.env.LLM_API_KEY ?? process.env.ANTHROPIC_API_KEY;
+  if (llmApiKey) {
+    envOverrides.llm = {
+      provider: process.env.LLM_PROVIDER ?? 'anthropic',
+      apiKey: llmApiKey,
+      ...(process.env.LLM_MODEL && { model: process.env.LLM_MODEL }),
+      ...(process.env.LLM_BASE_URL && { baseURL: process.env.LLM_BASE_URL }),
+    };
   }
 
   const configPath = getConfigPath();

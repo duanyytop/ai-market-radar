@@ -11,13 +11,19 @@ export async function generateDailyReport(
   const data = await collectReportData(config);
   data.signals = deriveSignals(data);
 
-  // Use LLM analysis if Anthropic API key is configured
-  const anthropicKey = config.anthropic?.apiKey;
-  if (anthropicKey) {
+  // Use LLM analysis if API key is configured
+  const llmConfig = config.llm;
+  if (llmConfig?.apiKey) {
     try {
-      const model = config.anthropic?.model ?? 'claude-sonnet-4-5-20250514';
-      console.error(`[llm] Generating report with ${model}...`);
-      const llmReport = await analyzeWithLLM(data, anthropicKey, model, locale);
+      const provider = llmConfig.provider ?? 'anthropic';
+      const model = llmConfig.model ?? 'claude-sonnet-4-5-20250514';
+      console.error(`[llm] Generating report with ${provider}/${model}...`);
+      const llmReport = await analyzeWithLLM(data, {
+        provider,
+        apiKey: llmConfig.apiKey,
+        model,
+        baseURL: llmConfig.baseURL,
+      }, locale);
       if (llmReport.length > 0) {
         console.error(`[llm] Report generated (${llmReport.length} chars)`);
         return llmReport;

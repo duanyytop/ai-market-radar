@@ -21,7 +21,10 @@ Options:
   --help, -h              Show this help message
 
 Environment variables:
-  ANTHROPIC_API_KEY       Anthropic API key (enables AI-powered analysis)
+  LLM_API_KEY             LLM API key (enables AI-powered analysis)
+  LLM_PROVIDER            LLM provider: "anthropic" or "openai" (default: anthropic)
+  LLM_MODEL               Model name (default: claude-sonnet-4-5-20250514)
+  LLM_BASE_URL            Custom API base URL (required for OpenAI-compatible providers)
   COINGECKO_API_KEY       CoinGecko API key (optional, improves rate limits)
 `);
 }

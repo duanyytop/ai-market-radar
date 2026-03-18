@@ -1,4 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk';
+import OpenAI from 'openai';
 import type { ReportData } from '../types.js';
 
 const SYSTEM_PROMPT = `You are a senior DeFi market analyst writing a daily intelligence report for crypto investors. Your analysis should be data-driven, actionable, and written in clear Markdown.
@@ -12,6 +13,29 @@ Guidelines:
 - Be concise. Investors are busy.
 - Include a risk assessment section.
 - Write in the language specified by the user.`;
+
+function buildUserPrompt(data: ReportData, locale: string): string {
+  const dataContext = buildDataContext(data);
+  const date = new Date().toISOString().split('T')[0];
+  const lang = locale === 'zh' ? 'Chinese (简体中文)' : 'English';
+
+  return `Here is today's (${date}) DeFi market data:
+
+${dataContext}
+
+Please write a comprehensive DeFi market intelligence report in **${lang}** based on this data. The report should include:
+
+1. **Market Overview** — Key price movements and what they indicate
+2. **DeFi Protocol Analysis** — Notable TVL changes and what's driving capital flows
+3. **Stablecoin Dynamics** — What supply changes tell us about market sentiment
+4. **Trading Activity** — DEX volume analysis and what it signals
+5. **Risk Assessment** — Key risks investors should watch
+6. **Actionable Suggestions** — Specific, data-backed recommendations for different investor profiles (conservative / moderate / aggressive)
+
+Format the report in Markdown with the title: "# DeFi Market Intelligence Report — ${date}"
+
+End with a disclaimer that this is AI-generated analysis based on public data and does not constitute financial advice.`;
+}
 
 function buildDataContext(data: ReportData): string {
   const lines: string[] = [];
@@ -60,34 +84,19 @@ function buildDataContext(data: ReportData): string {
   return lines.join('\n');
 }
 
-export async function analyzeWithLLM(
-  data: ReportData,
+/**
+ * Call Anthropic native API.
+ */
+async function callAnthropic(
   apiKey: string,
+  baseURL: string | undefined,
   model: string,
-  locale: string,
+  userPrompt: string,
 ): Promise<string> {
-  const client = new Anthropic({ apiKey });
-  const dataContext = buildDataContext(data);
-  const date = new Date().toISOString().split('T')[0];
-  const lang = locale === 'zh' ? 'Chinese (简体中文)' : 'English';
+  const opts: ConstructorParameters<typeof Anthropic>[0] = { apiKey };
+  if (baseURL) opts.baseURL = baseURL;
 
-  const userPrompt = `Here is today's (${date}) DeFi market data:
-
-${dataContext}
-
-Please write a comprehensive DeFi market intelligence report in **${lang}** based on this data. The report should include:
-
-1. **Market Overview** — Key price movements and what they indicate
-2. **DeFi Protocol Analysis** — Notable TVL changes and what's driving capital flows
-3. **Stablecoin Dynamics** — What supply changes tell us about market sentiment
-4. **Trading Activity** — DEX volume analysis and what it signals
-5. **Risk Assessment** — Key risks investors should watch
-6. **Actionable Suggestions** — Specific, data-backed recommendations for different investor profiles (conservative / moderate / aggressive)
-
-Format the report in Markdown with the title: "# DeFi Market Intelligence Report — ${date}"
-
-End with a disclaimer that this is AI-generated analysis based on public data and does not constitute financial advice.`;
-
+  const client = new Anthropic(opts);
   const response = await client.messages.create({
     model,
     max_tokens: 4096,
@@ -97,4 +106,48 @@ End with a disclaimer that this is AI-generated analysis based on public data an
 
   const textBlock = response.content.find((b) => b.type === 'text');
   return textBlock?.text ?? '';
+}
+
+/**
+ * Call OpenAI-compatible API (kimi, openai, openrouter, etc.)
+ */
+async function callOpenAICompatible(
+  apiKey: string,
+  baseURL: string,
+  model: string,
+  userPrompt: string,
+): Promise<string> {
+  const client = new OpenAI({ apiKey, baseURL });
+  const response = await client.chat.completions.create({
+    model,
+    max_completion_tokens: 4096,
+    messages: [
+      { role: 'system', content: SYSTEM_PROMPT },
+      { role: 'user', content: userPrompt },
+    ],
+  });
+
+  return response.choices[0]?.message?.content ?? '';
+}
+
+export interface LLMConfig {
+  provider: 'anthropic' | 'openai';
+  apiKey: string;
+  model: string;
+  baseURL?: string;
+}
+
+export async function analyzeWithLLM(
+  data: ReportData,
+  config: LLMConfig,
+  locale: string,
+): Promise<string> {
+  const userPrompt = buildUserPrompt(data, locale);
+
+  if (config.provider === 'openai') {
+    if (!config.baseURL) throw new Error('baseURL is required for openai provider');
+    return callOpenAICompatible(config.apiKey, config.baseURL, config.model, userPrompt);
+  }
+
+  return callAnthropic(config.apiKey, config.baseURL, config.model, userPrompt);
 }
