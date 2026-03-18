@@ -49,31 +49,36 @@ CoinGecko API ──┘
 
 4. The workflow runs daily. Trigger manually: `Actions → Daily DeFi Report → Run workflow`
 
-#### Example: Kimi 2.5
+#### Example: Kimi Code Plan (recommended)
 
 ```
-LLM_PROVIDER=openai
-LLM_API_KEY=your-kimi-api-key
-LLM_MODEL=kimi-2.5
-LLM_BASE_URL=https://api.kimi.com/v1
+ANTHROPIC_API_KEY=your-kimi-code-key
+ANTHROPIC_BASE_URL=https://api.kimi.com/coding/
 ```
+
+Uses Anthropic-compatible API, no extra config needed.
 
 #### Example: Claude
 
 ```
-LLM_PROVIDER=anthropic
-LLM_API_KEY=sk-ant-...
-LLM_MODEL=claude-sonnet-4-5-20250514
+ANTHROPIC_API_KEY=sk-ant-...
+```
+
+#### Example: OpenAI-compatible (Kimi 2.5 direct, OpenRouter, etc.)
+
+```
+LLM_PROVIDER=openai
+LLM_API_KEY=your-api-key
+LLM_MODEL=kimi-2.5
+LLM_BASE_URL=https://api.kimi.com/v1
 ```
 
 ### Local Usage
 
 ```bash
 pnpm install
-export LLM_API_KEY=your-key
-export LLM_PROVIDER=openai
-export LLM_MODEL=kimi-2.5
-export LLM_BASE_URL=https://api.kimi.com/v1
+export ANTHROPIC_API_KEY=your-kimi-code-key
+export ANTHROPIC_BASE_URL=https://api.kimi.com/coding/
 pnpm report -- --stdout                 # Print to terminal
 pnpm report -- --locale zh              # Chinese report
 pnpm report                             # Save to ~/.defi-radar/reports/
@@ -86,10 +91,9 @@ Optional config file at `~/.defi-radar/config.json`:
 ```json
 {
   "llm": {
-    "provider": "openai",
-    "apiKey": "your-kimi-key",
-    "model": "kimi-2.5",
-    "baseURL": "https://api.kimi.com/v1"
+    "provider": "anthropic",
+    "apiKey": "your-kimi-code-key",
+    "baseURL": "https://api.kimi.com/coding/"
   },
   "coingecko": {
     "apiKey": "YOUR_OPTIONAL_KEY"
@@ -101,10 +105,12 @@ Or use environment variables (take precedence over config file):
 
 | Variable | Description |
 |----------|-------------|
-| `LLM_API_KEY` | LLM API key (also reads `ANTHROPIC_API_KEY` as fallback) |
+| `ANTHROPIC_API_KEY` | Anthropic/Kimi Code API key |
+| `ANTHROPIC_BASE_URL` | Base URL override (e.g. `https://api.kimi.com/coding/` for Kimi Code Plan) |
+| `LLM_API_KEY` | Alternative to ANTHROPIC_API_KEY (takes precedence) |
 | `LLM_PROVIDER` | `anthropic` or `openai` (default: `anthropic`) |
-| `LLM_MODEL` | Model name |
-| `LLM_BASE_URL` | Custom API base URL |
+| `LLM_MODEL` | Model name override |
+| `LLM_BASE_URL` | Alternative to ANTHROPIC_BASE_URL (takes precedence) |
 | `COINGECKO_API_KEY` | CoinGecko API key |
 
 ## Development

@@ -68,10 +68,15 @@ describe('loadConfig from env', () => {
     expect(config.llm?.baseURL).toBe('https://api.kimi.com/v1');
   });
 
-  it('falls back to ANTHROPIC_API_KEY env var', () => {
-    process.env = { ...originalEnv, ANTHROPIC_API_KEY: 'sk-ant-test' };
+  it('falls back to ANTHROPIC_API_KEY and ANTHROPIC_BASE_URL', () => {
+    process.env = {
+      ...originalEnv,
+      ANTHROPIC_API_KEY: 'sk-ant-test',
+      ANTHROPIC_BASE_URL: 'https://api.kimi.com/coding/',
+    };
     const config = loadConfig();
     expect(config.llm?.apiKey).toBe('sk-ant-test');
     expect(config.llm?.provider).toBe('anthropic');
+    expect(config.llm?.baseURL).toBe('https://api.kimi.com/coding/');
   });
 });

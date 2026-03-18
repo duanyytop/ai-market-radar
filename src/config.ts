@@ -19,12 +19,13 @@ export function loadConfig(): DefiRadarConfig {
   }
   // LLM config from env vars
   const llmApiKey = process.env.LLM_API_KEY ?? process.env.ANTHROPIC_API_KEY;
+  const llmBaseURL = process.env.LLM_BASE_URL ?? process.env.ANTHROPIC_BASE_URL;
   if (llmApiKey) {
     envOverrides.llm = {
       provider: process.env.LLM_PROVIDER ?? 'anthropic',
       apiKey: llmApiKey,
       ...(process.env.LLM_MODEL && { model: process.env.LLM_MODEL }),
-      ...(process.env.LLM_BASE_URL && { baseURL: process.env.LLM_BASE_URL }),
+      ...(llmBaseURL && { baseURL: llmBaseURL }),
     };
   }
 

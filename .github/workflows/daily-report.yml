@@ -15,6 +15,9 @@ jobs:
     timeout-minutes: 5
     env:
       COINGECKO_API_KEY: ${{ secrets.COINGECKO_API_KEY }}
+      # LLM config — supports ANTHROPIC_API_KEY/ANTHROPIC_BASE_URL or LLM_* variants
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
       LLM_PROVIDER: ${{ secrets.LLM_PROVIDER }}
       LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
       LLM_MODEL: ${{ secrets.LLM_MODEL }}
