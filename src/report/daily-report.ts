@@ -1,6 +1,8 @@
-import type { DefiRadarConfig, ReportData, MarketSignal } from '../types.js';
+import type { DefiRadarConfig, ReportData, MarketSignal, AShareData } from '../types.js';
 import { getMarketOverview } from '../data/coingecko.js';
 import { getProtocolTvls, getStablecoinSupply, getDexVolumes } from '../data/defillama.js';
+import { getSinaIndices } from '../data/sina.js';
+import { getNorthboundFlow, getSectorFlows, getMarketBreadth } from '../data/eastmoney.js';
 import { analyzeWithLLM } from '../data/llm.js';
 import { type Locale, t } from './i18n.js';
 
@@ -69,7 +71,7 @@ async function generateFromData(
 async function collectReportData(config: DefiRadarConfig): Promise<ReportData> {
   const apiKey = config.coingecko?.apiKey;
 
-  const [market, tvl, stablecoins, dexVolumes] = await Promise.all([
+  const [market, tvl, stablecoins, dexVolumes, ashare] = await Promise.all([
     getMarketOverview(apiKey).catch((err) => {
       console.error(`[market] failed: ${err instanceof Error ? err.message : String(err)}`);
       return {
@@ -94,6 +96,7 @@ async function collectReportData(config: DefiRadarConfig): Promise<ReportData> {
       console.error(`[dex] failed: ${err instanceof Error ? err.message : String(err)}`);
       return [];
     }),
+    collectAShareData(),
   ]);
 
   return {
@@ -102,8 +105,65 @@ async function collectReportData(config: DefiRadarConfig): Promise<ReportData> {
     topTvlLosers: tvl.losers,
     stablecoins,
     dexVolumes,
+    ashare,
     signals: [],
   };
+}
+
+async function collectAShareData(): Promise<AShareData | null> {
+  try {
+    const [indices, northbound, sectors, breadth] = await Promise.all([
+      getSinaIndices().catch((err) => {
+        console.error(`[ashare:sina] failed: ${err instanceof Error ? err.message : String(err)}`);
+        return [];
+      }),
+      getNorthboundFlow().catch((err) => {
+        console.error(
+          `[ashare:northbound] failed: ${err instanceof Error ? err.message : String(err)}`,
+        );
+        return null;
+      }),
+      getSectorFlows(5).catch((err) => {
+        console.error(
+          `[ashare:sectors] failed: ${err instanceof Error ? err.message : String(err)}`,
+        );
+        return { inflow: [], outflow: [] };
+      }),
+      getMarketBreadth().catch((err) => {
+        console.error(
+          `[ashare:breadth] failed: ${err instanceof Error ? err.message : String(err)}`,
+        );
+        return { upCount: 0, downCount: 0, flatCount: 0, limitUp: 0, limitDown: 0, totalAmount: 0 };
+      }),
+    ]);
+
+    // If we got no index data at all, return null
+    if (indices.length === 0) return null;
+
+    console.error(
+      `[ashare] indices: ${indices.length}, northbound: ${northbound ? 'ok' : 'n/a'}, sectors: ${sectors.inflow.length + sectors.outflow.length}`,
+    );
+
+    return {
+      indices: indices.map((i) => ({
+        name: i.name,
+        price: i.price,
+        changePct: i.changePct,
+        amount: i.amount,
+      })),
+      northbound,
+      sectorInflow: sectors.inflow,
+      sectorOutflow: sectors.outflow,
+      breadth: {
+        upCount: breadth.upCount,
+        downCount: breadth.downCount,
+        totalAmount: breadth.totalAmount,
+      },
+    };
+  } catch (err) {
+    console.error(`[ashare] failed entirely: ${err instanceof Error ? err.message : String(err)}`);
+    return null;
+  }
 }
 
 function deriveSignals(data: ReportData): MarketSignal[] {
@@ -170,6 +230,38 @@ function deriveSignals(data: ReportData): MarketSignal[] {
       signal: 'neutral',
       message: `${topDex.name} volume +${topDex.volumeChange1d.toFixed(0)}% in 24h`,
     });
+  }
+
+  // A-share signals
+  if (data.ashare) {
+    const sse = data.ashare.indices.find((i) => i.name === '上证指数');
+    if (sse) {
+      if (sse.changePct < -2) {
+        signals.push({
+          type: 'ashare',
+          severity: sse.changePct < -3 ? 'significant' : 'notable',
+          signal: 'bearish',
+          message: `A-share SSE ${sse.changePct.toFixed(2)}%`,
+        });
+      } else if (sse.changePct > 2) {
+        signals.push({
+          type: 'ashare',
+          severity: sse.changePct > 3 ? 'significant' : 'notable',
+          signal: 'bullish',
+          message: `A-share SSE +${sse.changePct.toFixed(2)}%`,
+        });
+      }
+    }
+
+    if (data.ashare.northbound && Math.abs(data.ashare.northbound.total) > 50_0000) {
+      const nb = data.ashare.northbound.total;
+      signals.push({
+        type: 'ashare',
+        severity: Math.abs(nb) > 100_0000 ? 'significant' : 'notable',
+        signal: nb > 0 ? 'bullish' : 'bearish',
+        message: `Northbound flow: ${nb > 0 ? '+' : ''}${(nb / 10000).toFixed(1)}亿`,
+      });
+    }
   }
 
   return signals;
@@ -265,6 +357,66 @@ function formatReport(locale: Locale, data: ReportData): string {
       lines.push(`| ${d.name} | $${formatBig(d.volume24h)} | ${formatPct(d.volumeChange1d)} |`);
     }
     lines.push('');
+  }
+
+  // A-Share Market
+  if (data.ashare) {
+    lines.push(`## ${t('sectionAShare', locale)}`);
+    lines.push('');
+
+    // Indices
+    if (data.ashare.indices.length > 0) {
+      lines.push(
+        `| ${t('ashareIndex', locale)} | ${t('asharePrice', locale)} | ${t('change24h', locale)} |`,
+      );
+      lines.push('|---|---:|---:|');
+      for (const idx of data.ashare.indices) {
+        lines.push(`| ${idx.name} | ${formatNum(idx.price)} | ${formatPct(idx.changePct)} |`);
+      }
+      lines.push('');
+    }
+
+    // Northbound
+    if (data.ashare.northbound) {
+      const nb = data.ashare.northbound;
+      lines.push(
+        `**${t('ashareNorthbound', locale)}:** ${nb.total > 0 ? '+' : ''}${(nb.total / 10000).toFixed(2)}${t('ashareBillion', locale)}`,
+      );
+      lines.push('');
+    }
+
+    // Breadth
+    if (data.ashare.breadth.upCount > 0 || data.ashare.breadth.downCount > 0) {
+      lines.push(
+        `**${t('ashareBreadth', locale)}:** ${t('ashareUp', locale)} ${data.ashare.breadth.upCount} / ${t('ashareDown', locale)} ${data.ashare.breadth.downCount}`,
+      );
+      if (data.ashare.breadth.totalAmount > 0) {
+        lines.push(
+          `**${t('ashareTurnover', locale)}:** ${formatNum(data.ashare.breadth.totalAmount)}${t('ashareBillion', locale)}`,
+        );
+      }
+      lines.push('');
+    }
+
+    // Sector flows
+    if (data.ashare.sectorInflow.length > 0) {
+      lines.push(`**${t('ashareSectorInflow', locale)}:**`);
+      for (const s of data.ashare.sectorInflow) {
+        lines.push(
+          `- ${s.name} (${formatPct(s.changePct)}) ${t('ashareNetInflow', locale)} ${(s.netInflow / 10000).toFixed(2)}${t('ashareBillion', locale)}`,
+        );
+      }
+      lines.push('');
+    }
+    if (data.ashare.sectorOutflow.length > 0) {
+      lines.push(`**${t('ashareSectorOutflow', locale)}:**`);
+      for (const s of data.ashare.sectorOutflow) {
+        lines.push(
+          `- ${s.name} (${formatPct(s.changePct)}) ${t('ashareNetOutflow', locale)} ${(Math.abs(s.netInflow) / 10000).toFixed(2)}${t('ashareBillion', locale)}`,
+        );
+      }
+      lines.push('');
+    }
   }
 
   // Market Signals

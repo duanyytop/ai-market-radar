@@ -2,16 +2,17 @@ import Anthropic from '@anthropic-ai/sdk';
 import OpenAI from 'openai';
 import type { ReportData } from '../types.js';
 
-const SYSTEM_PROMPT = `You are a senior DeFi market analyst writing a daily intelligence report for crypto investors. Your analysis should be data-driven, actionable, and written in clear Markdown.
+const SYSTEM_PROMPT = `You are a senior market analyst writing a daily intelligence report covering both DeFi/crypto markets and China A-share markets. Your readers are investors who trade across both markets.
 
 Guidelines:
 - Base every claim on the provided data. Do not fabricate numbers.
-- Identify correlations between different data points (e.g., TVL changes + stablecoin supply + price action).
+- Identify correlations across markets (e.g., crypto price action vs A-share sentiment, northbound flow trends vs risk appetite, stablecoin supply vs capital rotation).
 - Distinguish between noise and meaningful signals. Not every small change matters.
 - Provide specific, actionable suggestions — not generic advice.
 - Use bullet points and tables for readability.
 - Be concise. Investors are busy.
-- Include a risk assessment section.
+- Include a risk assessment section covering both markets.
+- Note: A-share data reflects the previous trading day's close.
 - Write in the language specified by the user.`;
 
 function buildUserPrompt(data: ReportData, locale: string): string {
@@ -23,16 +24,18 @@ function buildUserPrompt(data: ReportData, locale: string): string {
 
 ${dataContext}
 
-Please write a comprehensive DeFi market intelligence report in **${lang}** based on this data. The report should include:
+Please write a comprehensive market intelligence report in **${lang}** based on this data. The report should include:
 
-1. **Market Overview** — Key price movements and what they indicate
+1. **Crypto Market Overview** — Key price movements and what they indicate
 2. **DeFi Protocol Analysis** — Notable TVL changes and what's driving capital flows
 3. **Stablecoin Dynamics** — What supply changes tell us about market sentiment
-4. **Trading Activity** — DEX volume analysis and what it signals
-5. **Risk Assessment** — Key risks investors should watch
-6. **Actionable Suggestions** — Specific, data-backed recommendations for different investor profiles (conservative / moderate / aggressive)
+4. **DEX Trading Activity** — Volume analysis and what it signals
+5. **A-Share Market Recap** — Index performance, northbound flow significance, sector rotation, and market breadth analysis
+6. **Cross-Market Correlation** — How A-share and crypto markets are interacting (risk appetite, capital flows, macro sentiment)
+7. **Risk Assessment** — Key risks across both markets
+8. **Actionable Suggestions** — Specific, data-backed recommendations for different investor profiles (conservative / moderate / aggressive)
 
-Format the report in Markdown with the title: "# DeFi Market Intelligence Report — ${date}"
+Format the report in Markdown with the title: "# Market Intelligence Report — ${date}"
 
 End with a disclaimer that this is AI-generated analysis based on public data and does not constitute financial advice.`;
 }
@@ -90,6 +93,54 @@ function buildDataContext(data: ReportData): string {
     for (const d of data.dexVolumes) {
       lines.push(
         `- ${d.name}: $${(d.volume24h / 1e6).toFixed(1)}M (${d.volumeChange1d >= 0 ? '+' : ''}${d.volumeChange1d.toFixed(1)}% vs prev day)`,
+      );
+    }
+    lines.push('');
+  }
+
+  // A-Share data
+  if (data.ashare) {
+    lines.push('### A-Share Market (Previous Trading Day Close)');
+
+    if (data.ashare.indices.length > 0) {
+      lines.push('Indices:');
+      for (const idx of data.ashare.indices) {
+        lines.push(
+          `- ${idx.name}: ${idx.price.toFixed(2)} (${idx.changePct >= 0 ? '+' : ''}${idx.changePct.toFixed(2)}%)`,
+        );
+      }
+    }
+
+    if (data.ashare.northbound) {
+      const nb = data.ashare.northbound;
+      lines.push(
+        `- Northbound Flow (HK→A): ${nb.total > 0 ? '+' : ''}${(nb.total / 10000).toFixed(2)}B CNY (SH: ${(nb.shConnect / 10000).toFixed(2)}B, SZ: ${(nb.szConnect / 10000).toFixed(2)}B)`,
+      );
+    }
+
+    if (data.ashare.breadth.upCount > 0 || data.ashare.breadth.downCount > 0) {
+      lines.push(
+        `- Market Breadth: ${data.ashare.breadth.upCount} up / ${data.ashare.breadth.downCount} down`,
+      );
+    }
+    if (data.ashare.breadth.totalAmount > 0) {
+      lines.push(`- Total Turnover: ${data.ashare.breadth.totalAmount.toFixed(0)}B CNY`);
+    }
+
+    if (data.ashare.sectorInflow.length > 0) {
+      lines.push(
+        '- Top sector inflows: ' +
+          data.ashare.sectorInflow
+            .map((s) => `${s.name}(${(s.netInflow / 10000).toFixed(1)}B)`)
+            .join(', '),
+      );
+    }
+    if (data.ashare.sectorOutflow.length > 0) {
+      lines.push(
+        '- Top sector outflows: ' +
+          data.ashare.sectorOutflow
+            .map((s) => `${s.name}(${(Math.abs(s.netInflow) / 10000).toFixed(1)}B)`)
+            .join(', '),
       );
     }
     lines.push('');

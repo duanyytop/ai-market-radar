@@ -64,6 +64,64 @@ const translations = {
     zh: '暂无 TVL 数据。',
   },
 
+  // A-Share
+  sectionAShare: {
+    en: 'A-Share Market (Previous Close)',
+    zh: 'A 股市场（上一交易日收盘）',
+  },
+  ashareIndex: {
+    en: 'Index',
+    zh: '指数',
+  },
+  asharePrice: {
+    en: 'Close',
+    zh: '收盘价',
+  },
+  ashareNorthbound: {
+    en: 'Northbound Flow (HK→A)',
+    zh: '北向资金（沪深港通）',
+  },
+  ashareBreadth: {
+    en: 'Market Breadth',
+    zh: '涨跌家数',
+  },
+  ashareUp: {
+    en: 'Up',
+    zh: '上涨',
+  },
+  ashareDown: {
+    en: 'Down',
+    zh: '下跌',
+  },
+  ashareTurnover: {
+    en: 'Total Turnover',
+    zh: '两市成交额',
+  },
+  ashareBillion: {
+    en: 'B CNY',
+    zh: '亿元',
+  },
+  ashareSectorInflow: {
+    en: 'Top Sector Inflows',
+    zh: '板块资金流入前五',
+  },
+  ashareSectorOutflow: {
+    en: 'Top Sector Outflows',
+    zh: '板块资金流出前五',
+  },
+  ashareNetInflow: {
+    en: 'net inflow',
+    zh: '净流入',
+  },
+  ashareNetOutflow: {
+    en: 'net outflow',
+    zh: '净流出',
+  },
+  noAShareData: {
+    en: 'No A-share data available.',
+    zh: '暂无 A 股数据。',
+  },
+
   // Stablecoin
   supplyChange1d: {
     en: '1d Change',
