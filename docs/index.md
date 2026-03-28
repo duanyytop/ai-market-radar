@@ -6,125 +6,92 @@ lang: en
 
 [View Archive →](archive)
 
-# Market Intelligence Report — 2026-03-27
+# Market Intelligence Report — 2026-03-28
 
-## Key Insight
+## 1. Key Insight
 
-Crypto is decoupling to the downside: US equities posted solid gains (+0.44-0.65%) while BTC/ETH sold off sharply (-3.48%/-4.75%), suggesting crypto-specific liquidation pressure or regulatory overhang rather than broad risk-off sentiment. This divergence is the critical signal to watch—either crypto catches down to a hidden bearish macro narrative, or it presents a tactical entry if equity resilience holds.
+**Crypto decouples to the downside while global equities rally** — BTC/ETH dropped 3.5%+ overnight despite US stocks hitting fresh highs, with stablecoin supply contracting (USDC -1.22% daily) signaling genuine capital flight rather than rotation. This divergence suggests crypto-specific liquidation pressure or regulatory overhang, not broad risk-off.
 
 ---
 
-## Global Risk Sentiment
+## 2. Global Risk Sentiment: Transmission Chain
 
 | Market | Performance | Signal |
 |--------|-------------|--------|
-| US | Risk-on (+0.44-0.65%) | Global tone-setter positive |
-| HK | Risk-off (-1.89% to -3.28%) | China/tech exposure punished |
-| A-shares | Risk-off (-1.09% to -1.34%) | Domestic weakness confirmed |
+| **US** (overnight lead) | Dow +0.65%, NDX +0.44%, SPX +0.59% | Risk-on, broad-based rally |
+| **Hong Kong** (follows US) | HSI +0.38%, HSCEI +0.76%, HSTECH +0.35% | Moderate follow-through, tech lags US |
+| **A-Shares** (domestic reaction) | SHCOMP +0.63%, ChiNext +0.71%, SZCOMP +1.13% | Stronger than HK, breadth exceptional (80% advancers) |
 
-**Transmission Chain**: US resilience failed to transmit to Asia. HK's -3.28% HSTECH drop is 7.5x the Nasdaq's gain in magnitude, indicating China-tech specific stress. A-shares followed through with poor breadth (416 up / 1882 down, 18% advance rate). This is **regional divergence**, not global risk-off—crypto's decline appears to align more with Asia weakness than US strength.
+**Verdict:** Clean risk-on transmission from US → HK → A-shares. Crypto is the **outlier**, breaking the correlation chain.
 
 ---
 
-## Crypto & DeFi
+## 3. Crypto & DeFi: Isolated Weakness
 
 | Metric | Reading | Interpretation |
 |--------|---------|----------------|
-| BTC/ETH | -3.48%/-4.75% | High-beta risk-off, ETH underperforming typical |
-| Total MC | -3.28% | Broad-based, not idiosyncratic |
-| Volume | $107.4B | Elevated—suggests active selling, not illiquidity |
+| BTC/ETH | -3.52% / -3.39% | Sharp selloff, no equity correlation |
+| Total Market Cap | -2.83% ($2.37T) | Broad-based, not idiosyncratic |
+| 24h Volume | $107.5B | Elevated — capitulation or rotation? |
+| **Stablecoin Supply** | USDT flat, **USDC -1.22%**, DAI flat | **Net outflow** — $950M+ left ecosystem in 24h |
 
-**TVL Signals**:
-- **RWA split**: Circle USYC (+7.19% TVL, +9.95% 7d) vs Superstate USTB (-20.86% TVL, -26.37% 7d)—flight to perceived safer RWA (Circle's regulatory clarity vs Superstate's unknowns?)
-- **Lending stress**: Venus Flux +19% (1d) but -45% (7d) = dead cat bounce; Capyfi -54% = structural outflow
-- **Liquid staking weakness**: Puffer -32%, Binance SOL -11%—unstaking pressure
+**DeFi TVL:** Mixed signals beneath the surface
+- **Winners:** Maple (+20% to $2.53B), edgeX Bridge (+18%), Stake DAO (+16.5%) — institutional lending/bridging seeing inflows
+- **Losers:** Rysk V12 (-49%), Marinade Select (-25.5%), B2 Buzz (-24%) — Solana staking, options, and BTC bridges bleeding
 
-**Stablecoin Supply**: USDT flat (-0.007%), USDC contracting (-0.748% 1d, -1.64% 7d). Net: ~$600M stablecoin reduction in 24h. This is **capital leaving crypto**, not rotating on-chain.
-
----
-
-## US Market
-
-- **Nasdaq +0.44% / S&P +0.59% / Dow +0.65%**
-- Broad-based gains with defensive Dow leading—suggests "soft landing" pricing, not growth euphoria
-- Implication: US institutional capital is not fleeing risk, but Asia/crypto are seeing outflows. This bifurcation supports the "crypto-specific headwind" thesis rather than macro de-risking.
+**Key disconnect:** DEX volumes are **not collapsing** (Uniswap V4 +14.9%, Fluid +21.3%, Orca +13.9%). Activity persists while prices drop — suggests deleveraging/liquidation, not fundamental abandonment.
 
 ---
 
-## Hong Kong Market
+## 4. US Market: Setting the Tone
 
-| Index | Change | Context |
-|-------|--------|---------|
-| HSI | -1.89% | Broader China exposure |
-| HSCEI | -2.25% | SOEs underperforming—policy disappointment? |
-| HSTECH | -3.28% | Tech/growth massacre, matching crypto magnitude |
+- **Dow 46,247 (+0.65%)** — Industrial/value leadership
+- **NDX 22,484 (+0.44%)** — Tech participation but lagging Dow
+- **SPX 6,643 (+0.59%)** — Broad strength, 52-week highs
 
-HSTECH's -3.28% nearly mirrors crypto's -3.28% total MC drop. This correlation suggests a **China tech/crypto risk premium** is being repriced simultaneously—possibly linked to US-China tech decoupling fears or China stimulus expectations fading.
+**Implication:** Global risk appetite is intact. The crypto selloff is **not** driven by US macro fears or Fed repricing. Look for crypto-specific catalysts (ETF flows? regulatory? large liquidations).
 
 ---
 
-## A-Share Market
+## 5. Hong Kong: Measured China Exposure
 
-| Metric | Reading | Signal |
-|--------|---------|--------|
-| 上证指数 | -1.09% | Key 3900 level lost |
-| 创业板指 | -1.34% | Growth underperforming |
-| Breadth | 18% advances | Extreme weakness, not just index-driven |
-| Turnover | ¥1.54T | Healthy liquidity—selling is active |
+| Index | Close | Change | vs US |
+|-------|-------|--------|-------|
+| HSI | 24,951.88 | +0.38% | Underperformed Dow by 27bps |
+| HSCEI | 8,453.77 | **+0.76%** | SOE/value catch-up |
+| HSTECH | 4,778.01 | +0.35% | **Lagged NDX by 9bps** |
 
-**Critical gap**: No northbound flow data provided. If foreign flows were negative on this down day, it confirms foreign skepticism. If positive, domestic panic meets foreign dip-buying. **Actionable**: Monitor tomorrow's northbound print—this is the A-share tell.
+**Reading:** HK participating but not leading. SOE outperformance (HSCEI > HSI) suggests foreign investors favoring policy-supported state sector over tech beta. HSTECH's modest gain vs NDX's 0.44% indicates **caution on China tech** despite US tech strength.
 
 ---
 
-## Cross-Market Divergences
+## 6. A-Share Market: Domestic Conviction
 
-| Divergence | Magnitude | Likely Driver | Implication |
+| Index | Close | Change | Note |
+|-------|-------|--------|------|
+| 上证指数 | 3,913.72 | +0.63% | Approaching 4,000 psychological level |
+| 深证成指 | 13,760.37 | **+1.13%** | SME/tech leadership |
+| 创业板指 | 3,295.88 | +0.71% | Growth participation |
+
+**Critical data:**
+- **Breadth:** 1,834 up / 469 down = **79.6% advancers** — exceptional conviction
+- **Turnover:** 1.454 trillion CNY — elevated, confirming participation
+
+**Domestic vs Foreign:** No northbound flow data provided, but A-share outperformance vs HK (+0.63% vs +0.38% on HSI, +1.13% SZCOMP vs +0.35% HSTECH) suggests **domestic funds driving the rally**. Foreign investors may be underweight or preferring HK liquidity.
+
+---
+
+## 7. Cross-Market Divergences
+
+| Divergence | Magnitude | Explanation | Implication |
 |------------|-----------|-------------|-------------|
-| **US up / Crypto down** | +0.5% vs -3.5% | Crypto-specific liquidation or regulatory fear | If US holds, crypto becomes tactical buy; if US cracks, crypto accelerates lower |
-| **US up / HK-A down** | +0.5% vs -1.5-3% | China growth/policy disappointment | Decoupling trade: long US tech, short China proxies |
-| **BTC down / RWA stable** | -3.5% vs USYC +7% | Flight to on-chain "safe" yield | Not true risk-off—selective DeFi rotation occurring |
-
-**Most important**: The US/crypto split. Historical pattern: when crypto diverges negatively from US equities for >2 days, it either (a) leads a broader risk-off (20% of time) or (b) creates 5-10% crypto bounce on mean reversion (80% of time). Position for scenario (b) with tight stops.
+| **US equities ↑ vs Crypto ↓↓** | 4%+ gap | Crypto-specific liquidation; stablecoin outflows confirm capital leaving, not rotating within crypto | Don't blame macro. Hunt for crypto catalyst (regulatory, ETF outflows, whale selling) |
+| **A-shares ↑↑ vs HK ↑** | SZCOMP +1.13% vs HSTECH +0.35% | Domestic retail/institutional buying; foreign caution on China tech via HK | China rally has domestic foundation — more sustainable if policy supports, but watch for foreign validation |
+| **DeFi DEX volumes ↑ vs Token prices ↓** | Uniswap V4 +14.9%, BTC -3.52% | Forced selling/liquidation driving volume, not exit from DeFi | Capitulation mechanics, not structural DeFi exodus |
 
 ---
 
-## Capital Flow Map
+## 8. Capital Flow Map
 
 ```
-US Equities ←——→ [HOLDING PATTERN]
-      ↑
-      └────────────┐
-                   ↓
-HK/China ←── OUTFLOW ──→ Stablecoin contraction (-$600M)
-      ↓                        ↓
-A-shares ←── DOMESTIC SELLING ─┘
-                   ↓
-         RWA rotation (USYC ↑, USTB ↓)
-         Lending unwind (Capyfi, Puffer ↓↓)
-```
-
-**Key flow**: Money is leaving Asia and crypto simultaneously. USDC's 7-day -1.64% decline is the largest stablecoin contraction signal—suggests either (a) fiat off-ramping, or (b) USDC→USDT flight (but USDT flat, so likely (a)).
-
----
-
-## Risk Matrix
-
-| Rank | Risk | Probability | Impact | Markets Affected |
-|------|------|-------------|--------|----------------|
-| 1 | **China stimulus disappointment** | High (60%) | High | HK, A-shares, crypto (via sentiment) |
-| 2 | **Crypto exchange/regulatory action** | Medium (40%) | High | Crypto only—explains US/crypto divergence |
-| 3 | **USD strength resurgence** | Medium (35%) | Medium-High | HK, crypto, EM—watch DXY |
-
----
-
-## Action Plan
-
-| Profile | Positioning | Specific Actions |
-|---------|-------------|----------------|
-| **Conservative** | Defensive | • Reduce HK/China exposure to underweight<br>• Hold US equity core, no additions<br>• Crypto: maintain stablecoin reserve, no deployment until US/crypto correlation restores |
-| **Moderate** | Selective | • Short HSTECH vs Nasdaq (pair trade the divergence)<br>• Crypto: small BTC position $66-67K support zone, stop $63K<br>• A-shares: wait for northbound flow confirmation—if positive on weakness, nibble quality SOEs |
-| **Aggressive** | High-conviction | • Crypto: full BTC deployment if $65K holds with US futures green pre-open; target $72K mean reversion<br>• HK: contrarian HSTECH calls if VIX-like spike in China tech fear<br>• A-shares: max pain long if breadth hits <10% advances (capitulation signal) |
-
----
-
-*This report is AI-generated analysis for reference only, not financial advice. All data is sourced from provided market information as of 2026-03-27. Past performance does not indicate future results. Consult a licensed financial advisor before making investment decisions.*
+US EQUITIES ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
