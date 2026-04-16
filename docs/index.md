@@ -6,125 +6,102 @@ lang: en
 
 [View Archive →](archive)
 
-# Market Intelligence Report — 2026-04-15
-
-## 1. Key Insight
-
-Global equities are in a synchronized risk-on mode (US +0.59%, HK +0.82%, A-shares +0.95–2.36%), yet crypto is barely participating with BTC flat (+0.38%) and ETH down (-1.30%). This is a **divergence alert**: the traditional risk appetite chain is broken at the crypto amplification stage, suggesting crypto-specific headwinds or capital rotation *out of* crypto into equities.
+# Market Intelligence Report — 2026-04-16
 
 ---
 
-## 2. Global Risk Sentiment: The Transmission Chain
+## 1. Key Insight
 
-| Market | Performance | Signal |
-|--------|-------------|--------|
-| US (S&P 500) | +0.59% | Risk-on, sets global tone |
-| HK (HSI) | +0.82% | Follows US, China exposure bid |
-| A-Shares (ChiNext) | +2.36% | Domestic retail enthusiasm |
-| Crypto (BTC) | +0.38% | **Fails to amplify** |
+Crypto is showing **classic risk-asset lag**: US equities posted solid gains, HK tech rallied, yet BTC barely budged (+0.40%) and total crypto market cap stagnated (+0.31%) — suggesting crypto-specific fatigue or capital waiting on a catalyst rather than riding the global risk-on wave.
 
-**Verdict**: US → HK → A-share transmission is clean and strong. HK outperformed US, and A-shares dramatically outperformed both, driven by ChiNext's 2.36% surge. Crypto is the clear outlier—risk appetite is not flowing through to digital assets.
+---
+
+## 2. Global Risk Sentiment: US → HK → A-Share Transmission
+
+| Market | Signal | Reading |
+|--------|--------|---------|
+| US | Dow +0.65%, S&P +0.59%, Nasdaq +0.44% | **Risk-on, broad-based** |
+| HK | HSI +0.29%, HSCEI +0.54%, HSTECH +1.23% | **Following US, tech leading** |
+| A-shares | Shanghai +0.01%, Shenzhen -0.97%, ChiNext -1.22% | **Divergent, weak** |
+
+**Transmission analysis**: The risk appetite chain **broke at the A-share open**. US and HK are aligned, but mainland China failed to follow. This is not a global risk-off event — it's **China-specific weakness** dragging down the eastern leg. HK's outperformance vs. A-shares (+1.23% HSTECH vs. -1.22% ChiNext) is a stark divergence.
 
 ---
 
 ## 3. Crypto & DeFi
 
-**Prices**: BTC +0.38%, ETH -1.30%, total crypto market cap +0.21%. ETH underperformance is notable—typically leads beta in risk-on conditions.
+| Metric | Reading | Interpretation |
+|--------|---------|----------------|
+| BTC | $74,802 (+0.40%) | **Lethargic** despite US equity gains |
+| ETH | $2,361 (+1.15%) | Outperforming BTC, but on low conviction |
+| Total Market Cap | $2,610B (+0.31%) | Barely moving |
+| 24h Volume | $97.3B | Moderate, not euphoric |
 
-**Stablecoins**: 
-- USDT: +$0.8B (+0.436%)
-- USDC: +$213M (+0.270%)
-- DAI: -$40M (-0.875%)
+**DeFi TVL**: Fragmented. Top gainers are **niche/small-cap protocols** (Project 0 at $0.08B +72%, RockawayX +66%) — likely airdrop farming or incentive-driven inflows, not broad DeFi renaissance. Top losers include **RWA (Midas -45%), lending (TermMax -43%, Granite -11%), and bridges (PumpBTC -25%, Free Protocol -19%)** — signaling stress in real-world asset tokenization and cross-chain liquidity.
 
-**Net stablecoin supply ↑ ~$1.0B in 24h.** This is *not* rotation from equities into crypto—equities rallied alongside stablecoin growth. More likely: existing crypto capital parking in stables, or new fiat entering but not deploying into risk assets yet.
+**Stablecoins**: USDT +0.398% ($185.5B), USDC -0.127% ($78.6B), DAI -0.709% ($4.59B). Net: **Tether growing, other stables shrinking or flat**. This is not a strong "dry powder" accumulation signal — more like marginal inflows into the safest stablecoin, not rotation from equities.
 
-**DeFi TVL**: Mixed and fragmented. No broad sector rally:
-- **CEX/DeFi hybrids leading**: OKX TVL +36%, River Omni-CDP +39%
-- **Solana/Memecoin infrastructure**: Manifest Trade DEX volume +93.7%, Fluid DEX +52.9%
-- **Weakness in institutional DeFi**: Gauntlet -9.5%, Euler DAO -19.9%, Jupiter Lend -14.8%
-
-**Crypto-equity relationship**: Stablecoin supply rising while crypto prices stagnate = **capital is accumulating dry powder**, not chasing beta. DeFi TVL gains are concentrated in speculative/niche protocols, not core lending or ETH staking—consistent with weak ETH price action.
+**Crypto-equity relationship**: Crypto is **underperforming its beta**. With US tech up and HK tech up +1.23%, BTC should be doing better. This fits either (a) post-halving consolidation fatigue, or (b) capital staying in TradFi because the equity risk/reward looks cleaner right now.
 
 ---
 
 ## 4. US Market
 
-- Dow +0.65%, S&P 500 +0.59%, Nasdaq +0.44%
+- **Dow 46,247 (+0.65%)** — cyclicals/value participating
+- **S&P 500 6,643.70 (+0.59%)** — broad market strength
+- **Nasdaq 22,484 (+0.44%)** — tech positive but not explosive
 
-Broad-based rally with value (Dow) edging growth (Nasdaq). This is **not a narrow tech-led move**—it signals broad risk acceptance. For global flows, this supports EM and HK exposure. The moderate Nasdaq gain (+0.44%) explains why HSTECH (+0.62%) matched but did not dramatically exceed US tech.
+**Implication**: This is a **"goldilocks" rally** — not concentrated in megacap tech, but broad enough to suggest resilient growth expectations. For global capital, this reduces the urgency to flee to crypto or emerging markets. The US remains the cleanest shirt.
 
 ---
 
 ## 5. Hong Kong Market
 
-- HSI +0.82%, HSCEI +0.81%, HSTECH +0.62%
+| Index | Close | Change |
+|-------|-------|--------|
+| HSI | 25,947.32 | +0.29% |
+| HSCEI | 8,718.26 | +0.54% |
+| HSTECH | 4,911.79 | **+1.23%** |
 
-HK outperformed US across the board. HSTECH slightly lagged HSI, suggesting the rally was driven by **old-economy China exposure** (property, financials, commodities) more than pure tech beta. This aligns with A-share strength in ChiNext—domestic Chinese investors are more aggressive on tech/growth than foreign capital accessing China via HK.
+HK is **decoupling from A-shares**. The HSTECH outperformance (+1.23% vs. ChiNext -1.22%) suggests foreign and institutional money views HK-listed China tech as the **superior vehicle** vs. mainland-listed equivalents. This often happens when:
+- Investors want China exposure without A-share liquidity/structural risks
+- Southbound flows from mainland are supporting HK
+- Foreign funds are reallocating from Shenzhen/ChiNext to HK
+
+**Signal**: HK is acting as the **China tech proxy of choice**.
 
 ---
 
 ## 6. A-Share Market
 
-| Index | Performance | Signal |
-|-------|-------------|--------|
-| 上证指数 | +0.95% | Broad market strength |
-| 深证成指 | +1.61% | Growth/mid-cap participation |
-| 创业板指 | +2.36% | Retail risk-on, speculative leadership |
-| Market Breadth | 1531 up / 732 down | 2:1 advance-decline, healthy |
-| Turnover | ¥1,815.3B | Elevated liquidity |
+| Index | Close | Change |
+|-------|-------|--------|
+| 上证指数 (SSE) | 4,027.21 | +0.01% |
+| 深证成指 (SZSE) | 14,498.46 | -0.97% |
+| 创业板指 (ChiNext) | 3,514.96 | **-1.22%** |
 
-**No northbound flow data provided in today's dataset.**
+**Critical divergence**: Shanghai flat, Shenzhen and ChiNext **sharply down**. This is a **growth/tech selloff in mainland China**, masked by state-supported index stability in the SSE.
 
-With ChiNext leading and strong breadth, this is a **domestically driven rally**. Foreign sentiment via HK (HSTECH +0.62%) is positive but more restrained. If northbound flows were negative, it would confirm domestic retail FOMO with foreign caution. Watch for that data tomorrow.
+**Northbound flow**: *Not provided in today's data.* Without it, we cannot confirm the foreign skepticism/domestic-driven lens directly. However, the **HK/A-share divergence** strongly implies foreign capital is preferring HK access points over A-shares. If northbound were strongly positive, ChiNext would not be -1.22% while HSTECH +1.23%.
+
+**Sector rotation guess** (pending data): Defensive/state-backed sectors (banks, SOEs, utilities) propping up the SSE, while private/growth sectors (EVs, semis, renewables) getting hit in Shenzhen.
 
 ---
 
 ## 7. Cross-Market Divergences
 
-| Divergence | Interpretation |
-|------------|----------------|
-| **US/HK/A-shares up → Crypto flat/down** | Crypto-specific headwind. Possible causes: post-halving supply overhang, ETH ETF outflows, regulatory overhang, or simply capital rotation from crypto to equities where momentum is cleaner. |
-| **Stablecoins ↑ + Crypto flat** | New money entering crypto ecosystem but not deploying. Dry powder accumulation. Historically precedes either a breakout or a risk-off event where stables are the safe haven. |
-| **ChiNext +2.36% vs HSTECH +0.62%** | Domestic Chinese investors far more aggressive on growth than foreign/HK-based capital. Foreigners want China exposure but prefer lower-beta entry points. |
+| Divergence | What It Means |
+|------------|---------------|
+| **US/HK up → A-shares down** | China-specific growth concerns or policy disappointment. Not global risk-off. |
+| **HK HSTECH +1.23% → ChiNext -1.22%** | Foreign/international capital favoring HK-listed China tech. A-share tech is the **relative loser**. |
+| **US equities up → BTC only +0.40%** | Crypto-specific headwind: likely **regulatory overhang, ETF flow exhaustion, or post-halving miner pressure**. Crypto is not catching the global bid. |
+| **DeFi TVL: niche gainers, bridge/lending losers** | No broad DeFi revival. Capital is **chasing incentives, not fundamentals**. |
+
+**Most important divergence**: The **HK/A-share tech split**. This is actionable — it tells you where China exposure is being priced more favorably.
 
 ---
 
 ## 8. Capital Flow Map
 
 ```
-Equity Markets ←────── Risk-on capital (US → HK → A-shares)
-       ↑
-       │
-Crypto Markets ──────→ Stablecoins (+$1.0B)
-   BTC flat, ETH down
-   │
-   └── DeFi: Fragmented
-       ├── Hot: Solana DEXs, CEX-integrated protocols (OKX, River)
-       └── Cold: Institutional risk management (Gauntlet, Euler), ETH lending
-```
-
-**Thesis**: Capital is rotating *within* crypto into stables and speculative DeFi niches, while *across* asset classes, momentum favors equities. This is not a "risk-off" exit from all assets—it's **selective risk-on in equities, defensive positioning in crypto**.
-
----
-
-## 9. Risk Matrix
-
-| Rank | Risk | Probability | Impact | Trigger to Watch |
-|------|------|-------------|--------|----------------|
-| 1 | **Crypto correlation breakdown extends** | High | High | BTC fails to rally even if S&P breaks to new highs—would confirm structural outflows |
-| 2 | **A-share retail frenzy overshoots** | Medium | High | ChiNext volume spike + margin debt surge + foreign outflows = classic blow-off top |
-| 3 | **USD strength resurgence** | Medium | Medium | DXY bounce would pressure HK/HSI and crypto simultaneously; Fed speakers this week |
-
----
-
-## 10. Action Plan
-
-| Profile | Recommendation |
-|---------|----------------|
-| **Conservative** | Reduce crypto beta exposure; maintain equity exposure via broad US/HK indices. The stablecoin build-up is not yet bullish for crypto prices—wait for BTC to reclaim $76K with volume before adding. |
-| **Moderate** | **Overweight A-shares/HK old economy** relative to crypto. Consider HSI/HSCEI calls or China consumer ETFs. In crypto, selective exposure to stablecoin-heavy ecosystems (Solana DEX volume surging) rather than ETH-beta. |
-| **Aggressive** | **Pair trade**: Long ChiNext futures / short HSTECH to capture the domestic-foreign enthusiasm gap. In crypto, trade the dispersion: long Manifest/Fluid DEX ecosystem tokens (if accessible), short ETH-beta or institutional DeFi (Gauntlet, Jupiter Lend weakness). |
-
----
-
-*Disclaimer: This report is AI-generated analysis for reference only and does not constitute financial, investment, or legal advice. Always conduct your own due diligence before making investment decisions.*
+US EQUITIES ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
