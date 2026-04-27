@@ -97,3 +97,11 @@ pnpm dev          # Generate report locally
 ## License
 
 MIT
+
+## 💰 Bounty Contribution
+
+- **Task:** AI Market Radar — 2026-04-27
+- **Reward:** $78471
+- **Source:** GitHub-Paid
+- **Date:** 2026-04-27
+
