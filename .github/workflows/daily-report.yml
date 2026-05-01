@@ -137,3 +137,18 @@ jobs:
           git add docs/
           git commit -m "report: ${DATE}" || echo "No changes"
           git push
+
+      - name: Close issues older than 7 days
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          CUTOFF=$(date -u -d '7 days ago' +%Y-%m-%dT00:00:00Z)
+          gh issue list \
+            --label "daily-report" \
+            --state open \
+            --limit 100 \
+            --json number,createdAt \
+            --jq ".[] | select(.createdAt < \"${CUTOFF}\") | .number" \
+          | while read -r num; do
+              gh issue close "$num" --reason "not planned"
+            done

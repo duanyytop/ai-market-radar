@@ -2,14 +2,12 @@ import type {
   DefiRadarConfig,
   ReportData,
   MarketSignal,
-  AShareData,
   USMarketData,
   HKMarketData,
 } from '../types.js';
 import { getMarketOverview } from '../data/coingecko.js';
 import { getProtocolTvls, getStablecoinSupply, getDexVolumes } from '../data/defillama.js';
 import { getAllIndices } from '../data/sina.js';
-import { getNorthboundFlow, getSectorFlows, getMarketBreadth } from '../data/eastmoney.js';
 import { analyzeWithLLM } from '../data/llm.js';
 import { type Locale, t } from './i18n.js';
 
@@ -112,7 +110,6 @@ async function collectReportData(config: DefiRadarConfig): Promise<ReportData> {
     topTvlLosers: tvl.losers,
     stablecoins,
     dexVolumes,
-    ashare: stockData.ashare,
     us: stockData.us,
     hk: stockData.hk,
     signals: [],
@@ -121,18 +118,14 @@ async function collectReportData(config: DefiRadarConfig): Promise<ReportData> {
 
 async function collectStockData(
   _config: DefiRadarConfig,
-): Promise<{ ashare: AShareData | null; us: USMarketData | null; hk: HKMarketData | null }> {
-  // Fetch all indices in one call
+): Promise<{ us: USMarketData | null; hk: HKMarketData | null }> {
   const allIndices = await getAllIndices().catch((err) => {
     console.error(`[sina] failed: ${err instanceof Error ? err.message : String(err)}`);
-    return { ashare: [], us: [], hk: [] };
+    return { us: [], hk: [] };
   });
 
-  console.error(
-    `[sina] A-share: ${allIndices.ashare.length}, US: ${allIndices.us.length}, HK: ${allIndices.hk.length}`,
-  );
+  console.error(`[sina] US: ${allIndices.us.length}, HK: ${allIndices.hk.length}`);
 
-  // US market
   const us: USMarketData | null =
     allIndices.us.length > 0
       ? {
@@ -144,7 +137,6 @@ async function collectStockData(
         }
       : null;
 
-  // HK market
   const hk: HKMarketData | null =
     allIndices.hk.length > 0
       ? {
@@ -156,56 +148,7 @@ async function collectStockData(
         }
       : null;
 
-  // A-share: indices from Sina + enrichment from Eastmoney
-  let ashare: AShareData | null = null;
-  if (allIndices.ashare.length > 0) {
-    const [northbound, sectors, breadth] = await Promise.all([
-      getNorthboundFlow().catch((err) => {
-        console.error(
-          `[eastmoney:northbound] failed: ${err instanceof Error ? err.message : String(err)}`,
-        );
-        return null;
-      }),
-      getSectorFlows(5).catch((err) => {
-        console.error(
-          `[eastmoney:sectors] failed: ${err instanceof Error ? err.message : String(err)}`,
-        );
-        return { inflow: [], outflow: [] };
-      }),
-      getMarketBreadth().catch((err) => {
-        console.error(
-          `[eastmoney:breadth] failed: ${err instanceof Error ? err.message : String(err)}`,
-        );
-        return {
-          upCount: 0,
-          downCount: 0,
-          flatCount: 0,
-          limitUp: 0,
-          limitDown: 0,
-          totalAmount: 0,
-        };
-      }),
-    ]);
-
-    ashare = {
-      indices: allIndices.ashare.map((i) => ({
-        name: i.name,
-        price: i.price,
-        changePct: i.changePct,
-        amount: i.amount,
-      })),
-      northbound,
-      sectorInflow: sectors.inflow,
-      sectorOutflow: sectors.outflow,
-      breadth: {
-        upCount: breadth.upCount,
-        downCount: breadth.downCount,
-        totalAmount: breadth.totalAmount,
-      },
-    };
-  }
-
-  return { ashare, us, hk };
+  return { us, hk };
 }
 
 function deriveSignals(data: ReportData): MarketSignal[] {
@@ -272,38 +215,6 @@ function deriveSignals(data: ReportData): MarketSignal[] {
       signal: 'neutral',
       message: `${topDex.name} volume +${topDex.volumeChange1d.toFixed(0)}% in 24h`,
     });
-  }
-
-  // A-share signals
-  if (data.ashare) {
-    const sse = data.ashare.indices.find((i) => i.name === '上证指数');
-    if (sse) {
-      if (sse.changePct < -2) {
-        signals.push({
-          type: 'ashare',
-          severity: sse.changePct < -3 ? 'significant' : 'notable',
-          signal: 'bearish',
-          message: `A-share SSE ${sse.changePct.toFixed(2)}%`,
-        });
-      } else if (sse.changePct > 2) {
-        signals.push({
-          type: 'ashare',
-          severity: sse.changePct > 3 ? 'significant' : 'notable',
-          signal: 'bullish',
-          message: `A-share SSE +${sse.changePct.toFixed(2)}%`,
-        });
-      }
-    }
-
-    if (data.ashare.northbound && Math.abs(data.ashare.northbound.total) > 500000) {
-      const nb = data.ashare.northbound.total;
-      signals.push({
-        type: 'ashare',
-        severity: Math.abs(nb) > 1000000 ? 'significant' : 'notable',
-        signal: nb > 0 ? 'bullish' : 'bearish',
-        message: `Northbound flow: ${nb > 0 ? '+' : ''}${(nb / 10000).toFixed(1)}亿`,
-      });
-    }
   }
 
   // US market signals
@@ -450,7 +361,7 @@ function formatReport(locale: Locale, data: ReportData): string {
     lines.push(`## ${t('sectionUS', locale)}`);
     lines.push('');
     lines.push(
-      `| ${t('ashareIndex', locale)} | ${t('asharePrice', locale)} | ${t('change24h', locale)} |`,
+      `| ${t('stockIndex', locale)} | ${t('stockPrice', locale)} | ${t('change24h', locale)} |`,
     );
     lines.push('|---|---:|---:|');
     for (const idx of data.us.indices) {
@@ -464,73 +375,13 @@ function formatReport(locale: Locale, data: ReportData): string {
     lines.push(`## ${t('sectionHK', locale)}`);
     lines.push('');
     lines.push(
-      `| ${t('ashareIndex', locale)} | ${t('asharePrice', locale)} | ${t('change24h', locale)} |`,
+      `| ${t('stockIndex', locale)} | ${t('stockPrice', locale)} | ${t('change24h', locale)} |`,
     );
     lines.push('|---|---:|---:|');
     for (const idx of data.hk.indices) {
       lines.push(`| ${idx.name} | ${formatNum(idx.price)} | ${formatPct(idx.changePct)} |`);
     }
     lines.push('');
-  }
-
-  // A-Share Market
-  if (data.ashare) {
-    lines.push(`## ${t('sectionAShare', locale)}`);
-    lines.push('');
-
-    // Indices
-    if (data.ashare.indices.length > 0) {
-      lines.push(
-        `| ${t('ashareIndex', locale)} | ${t('asharePrice', locale)} | ${t('change24h', locale)} |`,
-      );
-      lines.push('|---|---:|---:|');
-      for (const idx of data.ashare.indices) {
-        lines.push(`| ${idx.name} | ${formatNum(idx.price)} | ${formatPct(idx.changePct)} |`);
-      }
-      lines.push('');
-    }
-
-    // Northbound
-    if (data.ashare.northbound) {
-      const nb = data.ashare.northbound;
-      lines.push(
-        `**${t('ashareNorthbound', locale)}:** ${nb.total > 0 ? '+' : ''}${(nb.total / 10000).toFixed(2)}${t('ashareBillion', locale)}`,
-      );
-      lines.push('');
-    }
-
-    // Breadth
-    if (data.ashare.breadth.upCount > 0 || data.ashare.breadth.downCount > 0) {
-      lines.push(
-        `**${t('ashareBreadth', locale)}:** ${t('ashareUp', locale)} ${data.ashare.breadth.upCount} / ${t('ashareDown', locale)} ${data.ashare.breadth.downCount}`,
-      );
-      if (data.ashare.breadth.totalAmount > 0) {
-        lines.push(
-          `**${t('ashareTurnover', locale)}:** ${formatNum(data.ashare.breadth.totalAmount)}${t('ashareBillion', locale)}`,
-        );
-      }
-      lines.push('');
-    }
-
-    // Sector flows
-    if (data.ashare.sectorInflow.length > 0) {
-      lines.push(`**${t('ashareSectorInflow', locale)}:**`);
-      for (const s of data.ashare.sectorInflow) {
-        lines.push(
-          `- ${s.name} (${formatPct(s.changePct)}) ${t('ashareNetInflow', locale)} ${(s.netInflow / 10000).toFixed(2)}${t('ashareBillion', locale)}`,
-        );
-      }
-      lines.push('');
-    }
-    if (data.ashare.sectorOutflow.length > 0) {
-      lines.push(`**${t('ashareSectorOutflow', locale)}:**`);
-      for (const s of data.ashare.sectorOutflow) {
-        lines.push(
-          `- ${s.name} (${formatPct(s.changePct)}) ${t('ashareNetOutflow', locale)} ${(Math.abs(s.netInflow) / 10000).toFixed(2)}${t('ashareBillion', locale)}`,
-        );
-      }
-      lines.push('');
-    }
   }
 
   // Market Signals
