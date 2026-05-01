@@ -6,142 +6,111 @@ lang: en
 
 [View Archive →](archive)
 
-# Market Intelligence Report — 2026-04-30
+# AI Market Radar — Daily Intelligence Report — 2026-05-01
 
-## 1. Key Insight
+**Generated at:** 2026-05-01T00:41:51.104Z
 
-**HK and A-shares are staging a powerful risk-on rally (+1.68% HSI, +2.51% ChiNext) while crypto shows divergent weakness with stablecoins contracting and DeFi TVL fragmenting—this is the first meaningful decoupling of China equities from crypto in 2026, suggesting capital is rotating from digital assets into mainland/HK exposure on stimulus expectations rather than global liquidity expansion.**
+## Market Overview
 
----
+| | Price | 24h Change |
+|---|---:|---:|
+| BTC | $76,431 | +0.50% |
+| ETH | $2,260.91 | -0.12% |
 
-## 2. Global Risk Sentiment: Transmission Chain
+**Total Market Cap:** $2.63T (+0.12%)
+**24h Volume:** $77.25B
 
-| Market | Performance | Signal |
-|--------|-------------|--------|
-| US (overnight lead) | S&P +0.59%, NDX +0.44% | Moderate risk-on, tech lagging |
-| HK (follows US) | HSI +1.68%, HSTECH +1.72% | **Strong outperformance** — China beta amplifying |
-| A-shares (reacts at open) | ChiNext +2.51%, Shenzhen +1.96% | **Domestic retail/aggressive growth chasing** |
+## Protocol TVL Changes
 
-**Assessment**: Risk is ON, but the *composition* has shifted. US set a modest positive tone, yet HK and A-shares massively overshot typical beta (HSI usually tracks ~0.7x SPX moves). This is not passive following—this is active China-specific reallocation. The transmission chain is broken at the crypto link: BTC/ETH flat-to-down despite equity euphoria.
+### Top Gainers (TVL 24h)
 
----
+| Protocol | TVL | 1d | 7d | Category |
+|---|---:|---:|---:|---|
+| Bitway | $33.9M | +111.33% | +116.40% | Basis Trading |
+| Spark Savings | $2.24B | +46.21% | +15.43% | Yield |
+| Origami Finance | $49.2M | +42.03% | +26.27% | Leveraged Farming |
+| Spark Liquidity Layer | $2.60B | +30.20% | +6.33% | Onchain Capital Allocator |
+| Republic Note | $15.3M | +25.00% | +0.00% | RWA |
+| Cooler Loans | $213.2M | +15.94% | +11.41% | Lending |
+| Veda | $1.14B | +15.50% | +6.03% | Onchain Capital Allocator |
+| Spectra MetaVaults | $13.5M | +14.22% | -5.57% | Onchain Capital Allocator |
+| Kumbaya | $74.7M | +13.06% | +46.65% | Dexs |
+| MegaETH Bridge | $33.5M | +12.98% | +10.90% | Canonical Bridge |
 
-## 3. Crypto & DeFi: The Weak Link
+### Top Losers (TVL 24h)
 
-| Metric | Reading | Interpretation |
-|--------|---------|----------------|
-| BTC | -0.40% | Rejecting $76K, no follow-through |
-| ETH | -1.04% | Underperforming BTC—DeFi concerns |
-| Total Crypto MC | -0.97% | **Negative divergence vs equities** |
-| Stablecoins (USDT+USDC+DAI) | -$1.04B net contraction | **Capital leaving on-chain** |
+| Protocol | TVL | 1d | 7d | Category |
+|---|---:|---:|---:|---|
+| Manta CeDeFi | $26.8M | -33.81% | -34.43% | Basis Trading |
+| SuperEarn | $11.2M | -30.81% | -63.54% | Yield |
+| Nexus BTC | $201.2M | -29.94% | -12.76% | Bridge |
+| PulseX V1 | $19.4M | -17.32% | -22.96% | Dexs |
+| SparkDEX V3.1 | $14.2M | -15.92% | -9.10% | Dexs |
+| Free Protocol | $320.3M | -12.96% | +36.65% | Bridge |
+| Orderly Bridge | $16.5M | -12.17% | -10.03% | Bridge |
+| HTX | $5.00B | -11.70% | -4.94% | CEX |
+| Theo Network thBill | $114.5M | -10.83% | -4.25% | RWA |
+| Api3 | $12.7M | -10.06% | -11.08% | Risk Curators |
 
-**DeFi TVL: Severe Fragmentation**
+## Stablecoin Supply
 
-| Category | Signal |
-|----------|--------|
-| **Spark ecosystem collapsing** | Spark Savings -24.2%, Spark Liquidity Layer -21.6% → $3.5B+ TVL fleeing |
-| **Yield farming exodus** | SuperEarn -23.6%, Origin ARM -18.5% → rate expectations shifting? |
-| **CEX divergence** | HTX +9.6% vs OSL -32.9% → exchange-specific risk, not sectoral |
-| **RWA mixed** | Theo +8.9% but Republic Note -20% → narrative inconsistency |
+| Stablecoin | Supply | 1d Change | 7d Change |
+|---|---:|---:|---:|
+| USDT (Tether) | $187.95B | -0.85% | -0.39% |
+| USDC (USD Coin) | $77.26B | -0.43% | -1.46% |
+| DAI (Dai) | $4.65B | -0.19% | -0.43% |
 
-**Key Crypto-Equity Divergence**: All three stock markets closed green. Crypto closed red. Stablecoin contraction (-$1B+) confirms this is not a pause—it is **net outflow from digital assets**.
+## DEX Trading Volume
 
----
+| DEX | 24h Volume | 24h Change |
+|---|---:|---:|
+| Uniswap V4 | $690.1M | -33.19% |
+| Uniswap V3 | $595.3M | +48.72% |
+| PancakeSwap AMM V3 | $511.7M | +46.26% |
+| Aerodrome Slipstream | $340.1M | +0.26% |
+| Fluid DEX | $289.2M | -18.66% |
+| Kalshi | $202.2M | +22.50% |
+| Curve DEX | $163.9M | +22.98% |
+| Orca DEX | $144.1M | +1.76% |
+| PancakeSwap Infinity | $124.6M | -21.07% |
+| Raydium AMM | $122.6M | -1.49% |
 
-## 4. US Market: The Modest Catalyst
+## US Market (Previous Close)
 
-- **DJIA +0.65% | SPX +0.59% | NDX +0.44%**
+| Index | Close | 24h Change |
+|---|---:|---:|
+| 道琼斯 | 46,247.29 | +0.65% |
+| 纳斯达克 | 22,484.07 | +0.44% |
+| 标普500 | 6,643.7 | +0.59% |
 
-Broad-based but *muted* rally. Tech underperformed (NDX < DJIA), suggesting the US move was driven by value/ cyclical rotation rather than growth euphoria. This is important: **US did not provide a "growth impulse" that typically pulls crypto higher**. The modest US gains were insufficient to explain HK/A-share explosiveness—China narratives are driving independently.
+## Hong Kong Market (Previous Close)
 
----
+| Index | Close | 24h Change |
+|---|---:|---:|
+| 恒生指数 | 25,776.53 | -1.28% |
+| 国企指数 | 8,681.83 | -1.41% |
+| 恒生科技 | 4,871.32 | -0.79% |
 
-## 5. Hong Kong Market: China Beta Unleashed
+## A-Share Market (Previous Close)
 
-| Index | Move | vs Typical US Beta |
-|-------|------|-------------------|
-| HSI | +1.68% | ~2.8x SPX move (abnormal) |
-| HSCEI | +1.86% | SOEs leading—policy-sensitive |
-| HSTECH | +1.72% | Tech tracking, not exceeding |
+| Index | Close | 24h Change |
+|---|---:|---:|
+| 上证指数 | 4,112.16 | +0.11% |
+| 深证成指 | 15,107.55 | -0.09% |
+| 创业板指 | 3,677.15 | -0.27% |
 
-**Interpretation**: The SOE premium (HSCEI > HSI > HSTECH) is the tell. This is **policy anticipation trade**, not global tech momentum. Foreign investors are using HK as the liquid proxy for China stimulus bets. The HSTECH not leading suggests this is not a "China ARK" speculative frenzy—it is disciplined reflation positioning.
+**Market Breadth:** Up 1164 / Down 1104
+**Total Turnover:** 23,204B CNY
 
----
+## Market Signals
 
-## 6. A-Share Market: Domestic Conviction, Foreign Uncertainty
+- [NOTABLE] [BULLISH] Average protocol TVL change: +7.0%
+- [NOTABLE] [BEARISH] Stablecoin supply -1.47% (1d)
 
-| Index | Move | Driver |
-|-------|------|--------|
-| 上证综指 | +0.71% | Large-cap, state-backed, measured |
-| 深证成指 | +1.96% | Mid-cap growth |
-| 创业板指 (ChiNext) | **+2.51%** | **Retail speculation, thematic chasing** |
+## Investment Considerations
 
-**Critical Gap**: No northbound flow data provided, but the index structure screams **domestic-driven**. ChiNext's 3.5x outperformance vs Shanghai indicates local margin accounts and retail FOMO, not foreign institutional accumulation. If northbound were strongly positive, Shanghai would have kept pace (foreigners buy large-cap via Stock Connect).
-
-**Implication**: Foreign skepticism likely persists despite headline rally. This is a **fragile domestic momentum trade**—susceptible to policy disappointment or margin call cascades.
-
----
-
-## 7. Cross-Market Divergences: Three Alpha Signals
-
-| Divergence | Magnitude | Likely Cause | Trade Implication |
-|------------|-----------|------------|-----------------|
-| **HK/A-shares UP vs Crypto DOWN** | 200-350 bps gap | Capital rotation to China stimulus; crypto-specific stablecoin drain | Short BTC/ETH vs long HSTECH futures; or avoid crypto until stablecoins stabilize |
-| **ChiNext +2.51% vs Shanghai +0.71%** | 180 bps spread | Domestic retail leverage, foreign absence | ChiNext rally is **narrow and fragile**—watch for sudden reversal if margin rules tighten |
-| **Spark TVL collapse vs Rhea/Fragmetric gains** | -24% vs +22% | Protocol-specific risk, not sector rotation | DeFi is **not monolithic**—idiosyncratic due diligence required; avoid broad DeFi beta |
-
----
-
-## 8. Capital Flow Map
-
-```
-STABLECOINS:  ↓ $1.04B (outflow from crypto)
-    │
-    ├──→ HK EQUITIES?  Probable via fiat off-ramp
-    │
-    └──→ A-SHARES?     Less direct; more likely domestic liquidity recycling
-
-US EQUITY FLOWS:  Moderate risk-on, but tech-light
-    │
-    └──→ HK: Amplified via China stimulus narrative (not US growth proxy)
-
-DEFI TVL:  Fragmented
-    │
-    ├──→ Spark/SuperEarn/Yield: COLLAPSING (-20-24%) → rate repricing? protocol risk?
-    │
-    ├──→ HTX/Free Protocol: RISING → exchange consolidation, bridge activity
-    │
-    └──→ Net: UNCERTAIN → no clear "risk-on" or "risk-off" signal
-
-A-SHARE STRUCTURE:
-    │
-    ├──→ ChiNext/Shenzhen: DOMESTIC RETAIL (high beta, high fragility)
-    │
-    └──→ Shanghai: STATE-ANCHORED (low beta, policy put)
-```
-
-**Synthesis**: Money is leaving crypto (stablecoin contraction), partially rotating to HK/A-shares on stimulus hopes, but the A-share rally structure (retail-driven, narrow) suggests **this is a repositioning trade, not a sustained inflow regime**. The missing piece: foreign institutional commitment via northbound.
+- DeFi TVL growing — capital flowing into protocols, confidence building
+- Stablecoin supply contracting — capital may be exiting the crypto market
 
 ---
-
-## 9. Risk Matrix
-
-| Rank | Risk | Probability | Impact | Trigger to Watch |
-|------|------|-------------|--------|----------------|
-| 1 | **China stimulus disappointment** | High | Severe for HK/A-shares | Politburo meeting communique; no property/consumer measures |
-| 2 | **DeFi protocol contagion from Spark collapse** | Medium | Severe for crypto | Spark's $3.5B TVL flight accelerates; counterparty exposure emerges |
-| 3 | **USD strength resurgence** | Medium | Broad risk-off | DXY breaks 103; Fed speakers hawkish; tariffs escalate |
-
----
-
-## 10. Action Plan
-
-| Profile | Positioning | Specific Actions |
-|---------|-------------|----------------|
-| **Conservative** | Preserve capital, reduce beta | Trim HK/A-share exposure into strength; raise cash to 25-30%; avoid crypto until stablecoin supply 3-day moving average turns positive |
-| **Moderate** | Selective China stimulus, avoid crypto | Long HSCEI futures or 2800.HK calls (SOE policy leverage); short BTC $76K call spread to express crypto-equity divergence; watch northbound flow for A-share conviction check |
-| **Aggressive** | High-conviction divergence, event-driven | **Short ETH/BTC ratio** (ETH underperforming on DeFi stress); long ChiNext put spreads (domestic retail fragility); long HTX token or CEX-exposed names vs short DeFi yield tokens (Spark, SuperEarn) |
-
----
-
-*This report is AI-generated analysis for reference and educational purposes only. It does not constitute financial advice, investment recommendations, or solicitation to buy or sell any securities or digital assets. All data is sourced from provided inputs; verify independently before making investment decisions. Past performance does not indicate future results.*
+*This report is generated from DeFiLlama and CoinGecko public APIs. It is for informational purposes only and does not constitute financial advice. Always do your own research.*
