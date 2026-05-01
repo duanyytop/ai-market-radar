@@ -1,17 +1,13 @@
 export interface SinaIndexQuote {
   code: string;
   name: string;
-  market: 'ashare' | 'us' | 'hk';
+  market: 'us' | 'hk';
   price: number;
   change: number;
   changePct: number;
   volume: number;
   amount: number;
 }
-
-// --- A-Share indices ---
-// Format: var hq_str_s_sh000001="上证指数,3261.12,34.56,1.07,3890562,48765432";
-const ASHARE_CODES = ['s_sh000001', 's_sz399001', 's_sz399006'] as const;
 
 // --- US indices ---
 // Format: var hq_str_int_dji="...,DOW JONES,...,39869.38,...,-138.25,...,-0.35,...";
@@ -23,10 +19,6 @@ const US_CODES = ['int_dji', 'int_nasdaq', 'int_sp500'] as const;
 const HK_CODES = ['rt_hkHSI', 'rt_hkHSCEI', 'rt_hkHSTECH'] as const;
 
 const INDEX_META: Record<string, { en: string; zh: string; market: SinaIndexQuote['market'] }> = {
-  // A-Share
-  s_sh000001: { en: 'SSE Composite', zh: '上证指数', market: 'ashare' },
-  s_sz399001: { en: 'SZSE Component', zh: '深证成指', market: 'ashare' },
-  s_sz399006: { en: 'ChiNext', zh: '创业板指', market: 'ashare' },
   // US
   int_dji: { en: 'Dow Jones', zh: '道琼斯', market: 'us' },
   int_nasdaq: { en: 'NASDAQ', zh: '纳斯达克', market: 'us' },
@@ -46,23 +38,6 @@ async function fetchSina(codes: readonly string[]): Promise<string> {
     throw new Error(`Sina API error: ${res.status}`);
   }
   return res.text();
-}
-
-function parseAShareLine(code: string, content: string): SinaIndexQuote | null {
-  // Format: "名称,最新价,涨跌额,涨跌幅,成交量(手),成交额(万元)"
-  const parts = content.split(',');
-  if (parts.length < 6) return null;
-
-  return {
-    code,
-    name: INDEX_META[code]?.zh ?? parts[0],
-    market: 'ashare',
-    price: parseFloat(parts[1]),
-    change: parseFloat(parts[2]),
-    changePct: parseFloat(parts[3]),
-    volume: parseFloat(parts[4]),
-    amount: parseFloat(parts[5]),
-  };
 }
 
 function parseUSLine(code: string, content: string): SinaIndexQuote | null {
@@ -122,14 +97,6 @@ function extractQuotes(
 }
 
 /**
- * Get A-share indices from Sina Finance.
- */
-export async function getSinaIndices(): Promise<SinaIndexQuote[]> {
-  const text = await fetchSina(ASHARE_CODES);
-  return extractQuotes(text, ASHARE_CODES, parseAShareLine);
-}
-
-/**
  * Get US market indices from Sina Finance.
  */
 export async function getSinaUSIndices(): Promise<SinaIndexQuote[]> {
@@ -149,15 +116,13 @@ export async function getSinaHKIndices(): Promise<SinaIndexQuote[]> {
  * Get all market indices in one call.
  */
 export async function getAllIndices(): Promise<{
-  ashare: SinaIndexQuote[];
   us: SinaIndexQuote[];
   hk: SinaIndexQuote[];
 }> {
-  const allCodes = [...ASHARE_CODES, ...US_CODES, ...HK_CODES];
+  const allCodes = [...US_CODES, ...HK_CODES];
   const text = await fetchSina(allCodes);
 
   return {
-    ashare: extractQuotes(text, ASHARE_CODES, parseAShareLine),
     us: extractQuotes(text, US_CODES, parseUSLine),
     hk: extractQuotes(text, HK_CODES, parseHKLine),
   };

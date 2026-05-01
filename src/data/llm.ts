@@ -2,27 +2,24 @@ import Anthropic from '@anthropic-ai/sdk';
 import OpenAI from 'openai';
 import type { ReportData } from '../types.js';
 
-const SYSTEM_PROMPT = `You are a senior cross-market analyst writing a daily intelligence report for investors who allocate capital across US stocks, Hong Kong stocks, China A-shares, and crypto/DeFi. Your core value is connecting the dots across these four markets.
+const SYSTEM_PROMPT = `You are a senior cross-market analyst writing a daily intelligence report for investors who allocate capital across US stocks, Hong Kong stocks, and crypto/DeFi. Your core value is connecting the dots across these three markets.
 
 Analysis Framework — use these specific lenses for cross-market analysis:
 
-1. **Risk Appetite Chain**: US equities set the global tone → HK follows US overnight → A-shares react at open → Crypto amplifies (higher beta). Trace this transmission chain in the data.
+1. **Risk Appetite Chain**: US equities set the global tone → HK follows US overnight → Crypto amplifies (higher beta). Trace this transmission chain in the data.
 
 2. **Capital Rotation Signals**:
    - Stablecoin supply ↑ + stock markets flat/down = capital rotating into crypto
-   - Northbound flow ↑ + HK down = foreign funds preferring A-shares over HK
    - DeFi TVL ↑ + stablecoin supply flat = existing crypto capital moving on-chain
-   - US tech up + HSTECH up + ChiNext up = global tech rally, check if crypto follows
+   - US tech up + HSTECH up = global tech rally, check if crypto follows
 
 3. **Divergence Alerts** (most valuable signals):
    - US up but crypto down = crypto-specific headwind (regulatory? liquidation?)
-   - A-shares up but northbound flow negative = domestic-driven rally, foreign skepticism
    - BTC up but DeFi TVL down = speculative momentum, not fundamental
-   - All three stock markets down but stablecoins increasing = smart money preparing to buy dips
+   - Both stock markets down but stablecoins increasing = smart money preparing to buy dips
 
 4. **Macro Linkages**:
    - USD strength → typically bearish for crypto and HK
-   - China stimulus signals → bullish A-shares and HK, check crypto reaction
    - US Fed hawkish → bearish everything, watch for correlation spike
 
 Guidelines:
@@ -40,22 +37,21 @@ function buildUserPrompt(data: ReportData, locale: string): string {
   const date = new Date().toISOString().split('T')[0];
   const lang = locale === 'zh' ? 'Chinese (简体中文)' : 'English';
 
-  return `Here is today's (${date}) market data across crypto, US, HK, and A-share markets:
+  return `Here is today's (${date}) market data across crypto, US, and HK markets:
 
 ${dataContext}
 
 Write a cross-market intelligence report in **${lang}**. Structure:
 
 1. **Key Insight** — Lead with the single most important cross-market signal today (1-2 sentences)
-2. **Global Risk Sentiment** — US → HK → A-share transmission chain. Is risk on or off? Are markets aligned or diverging?
+2. **Global Risk Sentiment** — US → HK transmission chain. Is risk on or off? Are markets aligned or diverging?
 3. **Crypto & DeFi** — BTC/ETH action, TVL trends, stablecoin supply shifts. How does crypto relate to equity markets today?
 4. **US Market** — Index performance, what it means for global capital flows
 5. **Hong Kong Market** — HSI/HSCEI/HSTECH, China exposure sentiment
-6. **A-Share Market** — Indices, northbound flow, sector rotation, breadth. Domestic vs foreign sentiment
-7. **Cross-Market Divergences** — Any markets moving in opposite directions? Explain why and what it implies
-8. **Capital Flow Map** — Where is money moving? (stablecoin supply changes, northbound flow, DeFi TVL, sector rotation — connect the dots)
-9. **Risk Matrix** — Top 3 risks across all markets, ranked by probability and impact
-10. **Action Plan** — Specific recommendations for: conservative (preserve capital), moderate (selective positioning), aggressive (high-conviction plays)
+6. **Cross-Market Divergences** — Any markets moving in opposite directions? Explain why and what it implies
+7. **Capital Flow Map** — Where is money moving? (stablecoin supply changes, DeFi TVL — connect the dots)
+8. **Risk Matrix** — Top 3 risks across all markets, ranked by probability and impact
+9. **Action Plan** — Specific recommendations for: conservative (preserve capital), moderate (selective positioning), aggressive (high-conviction plays)
 
 Format in Markdown with title: "# Market Intelligence Report — ${date}"
 
@@ -137,54 +133,6 @@ function buildDataContext(data: ReportData): string {
     for (const idx of data.hk.indices) {
       lines.push(
         `- ${idx.name}: ${idx.price.toFixed(2)} (${idx.changePct >= 0 ? '+' : ''}${idx.changePct.toFixed(2)}%)`,
-      );
-    }
-    lines.push('');
-  }
-
-  // A-Share data
-  if (data.ashare) {
-    lines.push('### A-Share Market (Previous Trading Day Close)');
-
-    if (data.ashare.indices.length > 0) {
-      lines.push('Indices:');
-      for (const idx of data.ashare.indices) {
-        lines.push(
-          `- ${idx.name}: ${idx.price.toFixed(2)} (${idx.changePct >= 0 ? '+' : ''}${idx.changePct.toFixed(2)}%)`,
-        );
-      }
-    }
-
-    if (data.ashare.northbound) {
-      const nb = data.ashare.northbound;
-      lines.push(
-        `- Northbound Flow (HK→A): ${nb.total > 0 ? '+' : ''}${(nb.total / 10000).toFixed(2)}B CNY (SH: ${(nb.shConnect / 10000).toFixed(2)}B, SZ: ${(nb.szConnect / 10000).toFixed(2)}B)`,
-      );
-    }
-
-    if (data.ashare.breadth.upCount > 0 || data.ashare.breadth.downCount > 0) {
-      lines.push(
-        `- Market Breadth: ${data.ashare.breadth.upCount} up / ${data.ashare.breadth.downCount} down`,
-      );
-    }
-    if (data.ashare.breadth.totalAmount > 0) {
-      lines.push(`- Total Turnover: ${data.ashare.breadth.totalAmount.toFixed(0)}B CNY`);
-    }
-
-    if (data.ashare.sectorInflow.length > 0) {
-      lines.push(
-        '- Top sector inflows: ' +
-          data.ashare.sectorInflow
-            .map((s) => `${s.name}(${(s.netInflow / 10000).toFixed(1)}B)`)
-            .join(', '),
-      );
-    }
-    if (data.ashare.sectorOutflow.length > 0) {
-      lines.push(
-        '- Top sector outflows: ' +
-          data.ashare.sectorOutflow
-            .map((s) => `${s.name}(${(Math.abs(s.netInflow) / 10000).toFixed(1)}B)`)
-            .join(', '),
       );
     }
     lines.push('');

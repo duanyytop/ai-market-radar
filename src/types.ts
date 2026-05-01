@@ -49,30 +49,6 @@ export interface DexVolume {
   volumeChange1d: number;
 }
 
-export interface AShareIndex {
-  name: string;
-  price: number;
-  changePct: number;
-  amount: number; // 成交额（万元）
-}
-
-export interface AShareData {
-  indices: AShareIndex[];
-  northbound: {
-    date: string;
-    shConnect: number;
-    szConnect: number;
-    total: number;
-  } | null;
-  sectorInflow: Array<{ name: string; changePct: number; netInflow: number }>;
-  sectorOutflow: Array<{ name: string; changePct: number; netInflow: number }>;
-  breadth: {
-    upCount: number;
-    downCount: number;
-    totalAmount: number; // 亿元
-  };
-}
-
 export interface StockIndex {
   name: string;
   price: number;
@@ -88,7 +64,7 @@ export interface HKMarketData {
 }
 
 export interface MarketSignal {
-  type: 'price' | 'tvl' | 'stablecoin' | 'dex_volume' | 'ashare' | 'us' | 'hk';
+  type: 'price' | 'tvl' | 'stablecoin' | 'dex_volume' | 'us' | 'hk';
   severity: 'info' | 'notable' | 'significant';
   signal: 'bullish' | 'bearish' | 'neutral';
   message: string;
@@ -100,7 +76,6 @@ export interface ReportData {
   topTvlLosers: ProtocolTvl[];
   stablecoins: StablecoinSupply[];
   dexVolumes: DexVolume[];
-  ashare: AShareData | null;
   us: USMarketData | null;
   hk: HKMarketData | null;
   signals: MarketSignal[];
