@@ -6,121 +6,98 @@ lang: en
 
 [View Archive →](archive)
 
-# Market Intelligence Report — 2026-05-07
+# AI Market Radar — Daily Intelligence Report — 2026-05-08
+
+**Generated at:** 2026-05-08T00:39:24.380Z
+
+## Market Overview
+
+| | Price | 24h Change |
+|---|---:|---:|
+| BTC | $79,981 | -1.38% |
+| ETH | $2,289.09 | -2.28% |
+
+**Total Market Cap:** $2.74T (-1.04%)
+**24h Volume:** $107.23B
+
+## Protocol TVL Changes
+
+### Top Gainers (TVL 24h)
+
+| Protocol | TVL | 1d | 7d | Category |
+|---|---:|---:|---:|---|
+| Mellow Core | $430.4M | +41.76% | +47.24% | Onchain Capital Allocator |
+| BitMart | $18.8M | +34.81% | +21.06% | CEX |
+| Meteora DAMM V2 | $35.8M | +22.35% | +2.06% | Dexs |
+| OSL | $57.6M | +19.26% | +43.50% | CEX |
+| RockawayX | $115.1M | +18.37% | +40.30% | Risk Curators |
+| Curvance | $57.0M | +15.82% | +12.97% | Lending |
+| EVAA Protocol | $17.4M | +12.68% | +54.01% | Lending |
+| Figure Markets Democratized Prime | $22.7M | +11.53% | +10.29% | RWA Lending |
+| RIF ON CHAIN | $18.0M | +10.79% | +11.58% | Dual-Token Stablecoin |
+| Beets DEX V3 | $19.3M | +10.41% | +83.60% | Dexs |
+
+### Top Losers (TVL 24h)
+
+| Protocol | TVL | 1d | 7d | Category |
+|---|---:|---:|---:|---|
+| Nerona | $10.1M | -56.25% | +0.00% | Yield Aggregator |
+| Connext | $106.0M | -34.23% | -41.00% | Bridge |
+| Renzo | $218.5M | -20.98% | -37.12% | Liquid Restaking |
+| Axelar Cross Chain | $13.0M | -20.42% | +75.18% | Bridge |
+| Mezo Bridge | $32.5M | -19.81% | -23.54% | Bridge |
+| Joe V2.2 | $17.8M | -16.10% | -17.55% | Dexs |
+| KAIO | $60.8M | -12.69% | -31.97% | RWA |
+| Treehouse Protocol | $102.9M | -10.06% | -6.11% | DOR |
+| Velodrome V3 | $27.4M | -9.91% | -2.12% | Dexs |
+| Brotocol | $12.1M | -9.88% | +2.85% | Bridge Aggregator |
+
+## Stablecoin Supply
+
+| Stablecoin | Supply | 1d Change | 7d Change |
+|---|---:|---:|---:|
+| USDT (Tether) | $189.62B | +0.05% | +0.04% |
+| USDC (USD Coin) | $78.44B | -1.09% | +1.42% |
+| DAI (Dai) | $4.65B | +0.45% | -0.09% |
+
+## DEX Trading Volume
+
+| DEX | 24h Volume | 24h Change |
+|---|---:|---:|
+| Uniswap V4 | $850.8M | +3.41% |
+| Figure Markets Exchange | $831.1M | +1940.99% |
+| PancakeSwap AMM V3 | $636.3M | +0.00% |
+| Aerodrome Slipstream | $470.3M | -10.11% |
+| Uniswap V3 | $451.7M | +0.00% |
+| Fluid DEX | $272.3M | +19.91% |
+| BisonFi | $264.7M | +0.00% |
+| Orca DEX | $252.4M | +19.42% |
+| Kalshi | $181.9M | +0.00% |
+| PancakeSwap Infinity | $162.7M | -23.71% |
+
+## US Market (Previous Close)
+
+| Index | Close | 24h Change |
+|---|---:|---:|
+| 道琼斯 | 46,247.29 | +0.65% |
+| 纳斯达克 | 22,484.07 | +0.44% |
+| 标普500 | 6,643.7 | +0.59% |
+
+## Hong Kong Market (Previous Close)
+
+| Index | Close | 24h Change |
+|---|---:|---:|
+| 恒生指数 | 26,626.28 | +1.57% |
+| 国企指数 | 8,919.48 | +1.35% |
+| 恒生科技 | 5,121.1 | +3.06% |
+
+## Market Signals
+
+- [NOTABLE] [BEARISH] Stablecoin supply -0.60% (1d)
+
+## Investment Considerations
+
+- Stablecoin supply contracting — capital may be exiting the crypto market
 
 ---
-
-## 1. Key Insight
-
-**Crypto is underperforming a global risk-on rally in equities, with stablecoin supply contracting and DeFi TVL fragmenting into speculative micro-protocols rather than broad-based growth.** This divergence suggests crypto is not capturing the equity risk premium today—likely due to idiosyncratic DeFi deleveraging and stablecoin redemptions signaling cautious crypto-native capital.
-
----
-
-## 2. Global Risk Sentiment: US → HK Transmission Chain
-
-| Market | Performance | Signal |
-|--------|-------------|--------|
-| US (S&P 500) | +0.59% | Risk-on, broad rally |
-| US (Nasdaq) | +0.44% | Tech participation, but lagging Dow |
-| HK (HSI) | +1.22% | **Amplified follow-through** |
-| HK (HSTECH) | +0.80% | Tech aligned with US, not leading |
-
-**Transmission Assessment:** Clean risk-on chain. US equities set positive tone overnight; HK amplified with 2x the S&P's gain. HSTECH (+0.80%) matched Nasdaq's magnitude, confirming global tech sentiment is synchronized. **No divergence in the equity chain—this is coordinated risk appetite.**
-
----
-
-## 3. Crypto & DeFi: The Weak Link
-
-| Asset/Metric | Performance | Interpretation |
-|--------------|-------------|----------------|
-| BTC | +0.13% | Flat, barely participating in risk-on |
-| ETH | -0.73% | **Negative**, underperforming BTC |
-| Total Crypto MC | +0.40% | Dragged by ETH weakness |
-| Total Volume | $114.5B | Moderate, not euphoric |
-
-**TVL Divergence Alert:** Top gainers are micro-cap protocols ($0.01B–$0.34B) with explosive but fragile growth:
-- Rhea Lend +91% (but only $0.08B TVL)
-- Origami Finance +61% (leveraged farming = high risk)
-- Free Protocol +52% (bridge, but -6.59% weekly = fleeting)
-
-Meanwhile, established venues hemorrhaged: **GMX V2 -11%**, **Ekubo -40%**, **Venus Flux -18%**. This is **capital rotation from mature DeFi to speculative yield chasing**, not healthy expansion.
-
----
-
-## 4. US Market: Steady Risk-On, No Panic
-
-- **Dow +0.65% > Nasdaq +0.44%**: Value/cyclicals leading growth—classic "goldilocks" rotation, not speculative frenzy
-- S&P 500 +0.59% confirms broad participation
-
-**Implication for global flows:** US equity strength typically pulls capital from crypto when the risk-adjusted return in stocks improves. Today's crypto underperformance fits this pattern.
-
----
-
-## 5. Hong Kong Market: China Beta Working
-
-| Index | Move | Signal |
-|-------|------|--------|
-| HSI | +1.22% | Broad China exposure bid |
-| HSCEI | +0.80% | SOEs participating but lagging |
-| HSTECH | +0.80% | Tech matched US, no independent momentum |
-
-**Key read:** HSI outperformance vs. HSTECH/HSCEI suggests **property/financials/old economy leading**, not tech. This is a China reopening/reflation trade, not a global tech bubble. For crypto, this is neutral-to-negative: no tech frenzy to spill over.
-
----
-
-## 6. Cross-Market Divergences: Three Critical Gaps
-
-| Divergence | Direction | Likely Cause | Implication |
-|------------|-----------|--------------|-------------|
-| **US equities up → Crypto flat** | Risk-on not transmitting | Stablecoin contraction (-0.585% USDC), DeFi deleveraging | Crypto-specific liquidity drain; not macro-driven |
-| **BTC flat → ETH negative** | ETH underperforming | DeFi TVL stress, potential L2 competition, or staking yield compression | DeFi ecosystem weaker than store-of-value narrative |
-| **DeFi TVL "up" in names, down in quality** | Speculative rotation | Capital fleeing established protocols (GMX, Ekubo) for high-yield micro-caps | **Fragile foundation—smart money exiting, dumb money chasing** |
-
-**Most important divergence:** USDC supply fell **-0.585% in 24h** ($78.35B). This is the largest stablecoin contraction signal. With equities rallying, this is not "risk-off" flight to safety—it's **crypto-native capital leaving the ecosystem entirely**.
-
----
-
-## 7. Capital Flow Map
-
-```
-EQUITY MARKETS (Inflows)
-    ↓
-US Stocks ←── Global risk-on ──→ HK Stocks
-    ↑                              ↑
-    └─────────── Crypto ←──────────┘
-                  ↓
-         [STABLECOIN DRAINS]
-              USDC -0.585%
-              USDT flat (+0.034%)
-              DAI +0.853% (isolated, small)
-                  ↓
-         DeFi Fragmentation:
-         ├─ Fleeing: GMX, Ekubo, Venus (established)
-         └─ Chasing: Rhea, Origami, SuperEarn (speculative)
-```
-
-**Flow diagnosis:** Capital is **rotating OUT of crypto infrastructure and INTO equities**. The DAI increase (+0.853%) is likely MakerDAO-specific, not systemic. USDT flat = no new fiat entering. **This is an exodus, not an expansion.**
-
----
-
-## 8. Risk Matrix
-
-| Rank | Risk | Probability | Impact | Trigger to Watch |
-|------|------|-------------|--------|----------------|
-| 1 | **DeFi leveraged yield collapse** | High | High | Origami/SuperEarn TVL reversals → cascade liquidations |
-| 2 | **USDC sustained outflows** | Medium-High | High | >3 days of contraction breaks $75B psychological level |
-| 3 | **HK/China rally exhaustion** | Medium | Medium | HSI fails to hold 26,000 on US pullback |
-
----
-
-## 9. Action Plan
-
-| Profile | Positioning | Specific Actions |
-|---------|-------------|----------------|
-| **Conservative** | Preserve capital, reduce crypto exposure | • Trim DeFi positions, especially leveraged yield protocols (Origami, SuperEarn)<br>• Hold USDC in money markets, not idle wallets<br>• Increase HK equity allocation via HSI ETFs if not already positioned |
-| **Moderate** | Selective risk, exploit divergence | • **Short ETH/BTC ratio** (ETH weakness persists)<br>• Rotate from DeFi governance tokens to BTC-only exposure<br>• Consider HK value plays (property, financials) over HSTECH |
-| **Aggressive** | High-conviction contrarian or momentum | • **Contrarian:** Deploy stablecoin dry powder if USDC outflows reverse; target distressed DeFi blue-chips (GMX at -11% discount)<br>• **Momentum:** Micro-cap DeFi yield chase ONLY with tight stops—Rhea Lend, Tonstakers with 20% trailing stop<br>• **Hedge:** Long HK/Short crypto pair trade |
-
----
-
-*This report is AI-generated analysis for reference only. It does not constitute financial advice. All data is sourced from provided market feeds. Past performance does not indicate future results. Consult a licensed financial advisor before making investment decisions.*
+*This report is generated from DeFiLlama and CoinGecko public APIs. It is for informational purposes only and does not constitute financial advice. Always do your own research.*
